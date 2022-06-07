@@ -17,25 +17,21 @@ namespace Sample0607
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bcRandom_Click(object sender, EventArgs e)
         {
-            if (nudNum2.Text == 0.ToString())
-            {
-                MessageBox.Show("0じゃ割れないよ？","え？？",MessageBoxButtons.AbortRetryIgnore,MessageBoxIcon.None);
-            }
-            else
-            {
-                //tbAns.Text = (int.Parse(nudNum1.Text) / int.Parse(nudNum2.Text)).ToString();
-                //tbmod.Text = (int.Parse(nudNum1.Text) % int.Parse(nudNum2.Text)).ToString();
-                nudAns.Value = nudNum1.Value / nudNum2.Value;
-                nudMod.Value = nudNum1.Value % nudNum2.Value;
-            }
-            
+            var rand = new Random();
+
+            nudNum1.Value = rand.Next(minValue:(int)nudMin.Value, maxValue:(int)nudMax.Value+1);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

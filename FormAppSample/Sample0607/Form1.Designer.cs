@@ -29,127 +29,102 @@ namespace Sample0607
         /// </summary>
         private void InitializeComponent()
         {
-            this.わる = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bcRandom = new System.Windows.Forms.Button();
             this.nudNum1 = new System.Windows.Forms.NumericUpDown();
-            this.nudNum2 = new System.Windows.Forms.NumericUpDown();
-            this.nudAns = new System.Windows.Forms.NumericUpDown();
-            this.nudMod = new System.Windows.Forms.NumericUpDown();
+            this.nudMin = new System.Windows.Forms.NumericUpDown();
+            this.nudMax = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudNum1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNum2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAns)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMax)).BeginInit();
             this.SuspendLayout();
             // 
-            // わる
+            // bcRandom
             // 
-            this.わる.AutoSize = true;
-            this.わる.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.わる.Location = new System.Drawing.Point(116, 30);
-            this.わる.Name = "わる";
-            this.わる.Size = new System.Drawing.Size(54, 37);
-            this.わる.TabIndex = 3;
-            this.わる.Text = "÷";
-            this.わる.Click += new System.EventHandler(this.label1_Click);
+            this.bcRandom.Font = new System.Drawing.Font("MS UI Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.bcRandom.Location = new System.Drawing.Point(479, 65);
+            this.bcRandom.Name = "bcRandom";
+            this.bcRandom.Size = new System.Drawing.Size(248, 176);
+            this.bcRandom.TabIndex = 0;
+            this.bcRandom.Text = "乱数取得";
+            this.bcRandom.UseVisualStyleBackColor = true;
+            this.bcRandom.Click += new System.EventHandler(this.bcRandom_Click);
+            // 
+            // nudNum1
+            // 
+            this.nudNum1.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.nudNum1.Location = new System.Drawing.Point(283, 197);
+            this.nudNum1.Name = "nudNum1";
+            this.nudNum1.Size = new System.Drawing.Size(89, 44);
+            this.nudNum1.TabIndex = 1;
+            // 
+            // nudMin
+            // 
+            this.nudMin.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.nudMin.Location = new System.Drawing.Point(252, 122);
+            this.nudMin.Name = "nudMin";
+            this.nudMin.Size = new System.Drawing.Size(120, 44);
+            this.nudMin.TabIndex = 2;
+            // 
+            // nudMax
+            // 
+            this.nudMax.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.nudMax.Location = new System.Drawing.Point(252, 39);
+            this.nudMax.Name = "nudMax";
+            this.nudMax.Size = new System.Drawing.Size(120, 44);
+            this.nudMax.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(95, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 37);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "最大値";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(338, 30);
+            this.label2.Location = new System.Drawing.Point(95, 122);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 37);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "＝";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(573, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 37);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "あまり";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(424, 116);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 52);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "計算";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // nudNum1
-            // 
-            this.nudNum1.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nudNum1.Location = new System.Drawing.Point(1, 27);
-            this.nudNum1.Name = "nudNum1";
-            this.nudNum1.Size = new System.Drawing.Size(120, 44);
-            this.nudNum1.TabIndex = 8;
-            // 
-            // nudNum2
-            // 
-            this.nudNum2.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nudNum2.Location = new System.Drawing.Point(190, 23);
-            this.nudNum2.Name = "nudNum2";
-            this.nudNum2.Size = new System.Drawing.Size(120, 44);
-            this.nudNum2.TabIndex = 9;
-            // 
-            // nudAns
-            // 
-            this.nudAns.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nudAns.Location = new System.Drawing.Point(413, 23);
-            this.nudAns.Name = "nudAns";
-            this.nudAns.Size = new System.Drawing.Size(120, 44);
-            this.nudAns.TabIndex = 10;
-            // 
-            // nudMod
-            // 
-            this.nudMod.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nudMod.Location = new System.Drawing.Point(677, 28);
-            this.nudMod.Name = "nudMod";
-            this.nudMod.Size = new System.Drawing.Size(120, 44);
-            this.nudMod.TabIndex = 11;
+            this.label2.Size = new System.Drawing.Size(128, 37);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "最小値";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.nudMod);
-            this.Controls.Add(this.nudAns);
-            this.Controls.Add(this.nudNum2);
-            this.Controls.Add(this.nudNum1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(739, 265);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.わる);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.nudMax);
+            this.Controls.Add(this.nudMin);
+            this.Controls.Add(this.nudNum1);
+            this.Controls.Add(this.bcRandom);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudNum1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNum2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAns)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label わる;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+
+        private System.Windows.Forms.Button bcRandom;
         private System.Windows.Forms.NumericUpDown nudNum1;
-        private System.Windows.Forms.NumericUpDown nudNum2;
-        private System.Windows.Forms.NumericUpDown nudAns;
-        private System.Windows.Forms.NumericUpDown nudMod;
+        private System.Windows.Forms.NumericUpDown nudMin;
+        private System.Windows.Forms.NumericUpDown nudMax;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
