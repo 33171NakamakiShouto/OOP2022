@@ -19,11 +19,23 @@ namespace Sample0607
 
         private void label1_Click(object sender, EventArgs e)
         {
-            var num1 = tbNum1.Text;
-            var num2 = tbNum2.Text;
 
-            var Ans = int.Parse(num1) / num2;
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (nudNum2.Text == 0.ToString())
+            {
+                MessageBox.Show("0じゃ割れないよ？","え？？",MessageBoxButtons.AbortRetryIgnore,MessageBoxIcon.None);
+            }
+            else
+            {
+                //tbAns.Text = (int.Parse(nudNum1.Text) / int.Parse(nudNum2.Text)).ToString();
+                //tbmod.Text = (int.Parse(nudNum1.Text) % int.Parse(nudNum2.Text)).ToString();
+                nudAns.Value = nudNum1.Value / nudNum2.Value;
+                nudMod.Value = nudNum1.Value % nudNum2.Value;
+            }
+            
         }
     }
 }
