@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise01", "Chapter06\Exe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise02", "Chapter06\Exercise02\Exercise02.csproj", "{4131D2D6-9EF0-42F9-8E23-2E27E55D3DA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newber Game", "FormAppSample\Newber Game\Newber Game.csproj", "{961EEFAB-B001-4F3E-8A96-98904B5DE205}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,10 @@ Global
 		{4131D2D6-9EF0-42F9-8E23-2E27E55D3DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4131D2D6-9EF0-42F9-8E23-2E27E55D3DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4131D2D6-9EF0-42F9-8E23-2E27E55D3DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961EEFAB-B001-4F3E-8A96-98904B5DE205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961EEFAB-B001-4F3E-8A96-98904B5DE205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961EEFAB-B001-4F3E-8A96-98904B5DE205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961EEFAB-B001-4F3E-8A96-98904B5DE205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{B1FB0A50-0D9D-4D55-ABC5-FAEBEBB44028} = {BFE4196E-0629-41B1-A6EA-DA6F879B8810}
 		{BCA9DCF9-7F6A-4614-99B0-3E5952C9EC0D} = {7F39F510-21AF-4C6A-B5DE-1D88047E47CC}
 		{4131D2D6-9EF0-42F9-8E23-2E27E55D3DA1} = {7F39F510-21AF-4C6A-B5DE-1D88047E47CC}
+		{961EEFAB-B001-4F3E-8A96-98904B5DE205} = {56650EA8-1309-475E-ABF7-D5C91AD0D40F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83B99BCB-FB33-42C3-82E0-B563D0E24182}
