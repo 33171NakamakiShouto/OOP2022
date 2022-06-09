@@ -38,7 +38,7 @@ namespace AddressBook
             this.tbMailAddress = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.tbCompany = new System.Windows.Forms.TextBox();
-            this.dgvPerson = new System.Windows.Forms.DataGridView();
+            this.dgvPersons = new System.Windows.Forms.DataGridView();
             this.btAddPerson = new System.Windows.Forms.Button();
             this.btPictureOpen = new System.Windows.Forms.Button();
             this.cbFamiy = new System.Windows.Forms.CheckBox();
@@ -47,7 +47,8 @@ namespace AddressBook
             this.cbOther = new System.Windows.Forms.CheckBox();
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.btPictureClear = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).BeginInit();
+            this.ofdFileOpenDialog = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,14 +136,14 @@ namespace AddressBook
             this.tbCompany.Size = new System.Drawing.Size(313, 31);
             this.tbCompany.TabIndex = 8;
             // 
-            // dgvPerson
+            // dgvPersons
             // 
-            this.dgvPerson.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPerson.Location = new System.Drawing.Point(12, 280);
-            this.dgvPerson.Name = "dgvPerson";
-            this.dgvPerson.RowTemplate.Height = 21;
-            this.dgvPerson.Size = new System.Drawing.Size(760, 151);
-            this.dgvPerson.TabIndex = 9;
+            this.dgvPersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersons.Location = new System.Drawing.Point(12, 280);
+            this.dgvPersons.Name = "dgvPersons";
+            this.dgvPersons.RowTemplate.Height = 21;
+            this.dgvPersons.Size = new System.Drawing.Size(760, 151);
+            this.dgvPersons.TabIndex = 9;
             // 
             // btAddPerson
             // 
@@ -154,6 +155,7 @@ namespace AddressBook
             this.btAddPerson.TabIndex = 10;
             this.btAddPerson.Text = "追加";
             this.btAddPerson.UseVisualStyleBackColor = true;
+            this.btAddPerson.Click += new System.EventHandler(this.btAddPerson_Click);
             // 
             // btPictureOpen
             // 
@@ -165,6 +167,7 @@ namespace AddressBook
             this.btPictureOpen.TabIndex = 11;
             this.btPictureOpen.Text = "開く…";
             this.btPictureOpen.UseVisualStyleBackColor = true;
+            this.btPictureOpen.Click += new System.EventHandler(this.btPictureOpen_Click);
             // 
             // cbFamiy
             // 
@@ -208,9 +211,10 @@ namespace AddressBook
             // 
             // pbPicture
             // 
-            this.pbPicture.Location = new System.Drawing.Point(596, 5);
+            this.pbPicture.Location = new System.Drawing.Point(543, 5);
             this.pbPicture.Name = "pbPicture";
-            this.pbPicture.Size = new System.Drawing.Size(95, 139);
+            this.pbPicture.Size = new System.Drawing.Size(229, 157);
+            this.pbPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPicture.TabIndex = 16;
             this.pbPicture.TabStop = false;
             // 
@@ -224,6 +228,11 @@ namespace AddressBook
             this.btPictureClear.TabIndex = 17;
             this.btPictureClear.Text = "クリア";
             this.btPictureClear.UseVisualStyleBackColor = true;
+            this.btPictureClear.Click += new System.EventHandler(this.btPictureClear_Click);
+            // 
+            // ofdFileOpenDialog
+            // 
+            this.ofdFileOpenDialog.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -238,7 +247,7 @@ namespace AddressBook
             this.Controls.Add(this.cbFamiy);
             this.Controls.Add(this.btPictureOpen);
             this.Controls.Add(this.btAddPerson);
-            this.Controls.Add(this.dgvPerson);
+            this.Controls.Add(this.dgvPersons);
             this.Controls.Add(this.tbCompany);
             this.Controls.Add(this.tbAddress);
             this.Controls.Add(this.tbMailAddress);
@@ -249,8 +258,9 @@ namespace AddressBook
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).EndInit();
+            this.Text = "住所録アプリ";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -268,7 +278,7 @@ namespace AddressBook
         private System.Windows.Forms.TextBox tbMailAddress;
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.TextBox tbCompany;
-        private System.Windows.Forms.DataGridView dgvPerson;
+        private System.Windows.Forms.DataGridView dgvPersons;
         private System.Windows.Forms.Button btAddPerson;
         private System.Windows.Forms.Button btPictureOpen;
         private System.Windows.Forms.CheckBox cbFamiy;
@@ -277,6 +287,7 @@ namespace AddressBook
         private System.Windows.Forms.CheckBox cbOther;
         private System.Windows.Forms.PictureBox pbPicture;
         private System.Windows.Forms.Button btPictureClear;
+        private System.Windows.Forms.OpenFileDialog ofdFileOpenDialog;
     }
 }
 
