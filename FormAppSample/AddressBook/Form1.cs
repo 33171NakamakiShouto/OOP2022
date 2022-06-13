@@ -31,6 +31,7 @@ namespace AddressBook
             
         }
 
+        //追加ボタンを押された時の処理
         private void btAddPerson_Click(object sender, EventArgs e)
         {
             Person newPerson = new Person
@@ -43,7 +44,8 @@ namespace AddressBook
                 listGroup = GetCheckBoxGroup(),
             };
 
-            listPerson.Add(newPerson);    
+            listPerson.Add(newPerson);
+            AllDelete();
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -79,6 +81,10 @@ namespace AddressBook
         //データグリッドビューをクリックした時のイベントハンドラ
         private void dgvPersons_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvPersons.CurrentRow == null) return;
+
+            int index = dgvPersons.CurrentRow.Index;
+
             //tbName.Text = listPerson[0].Name;
             var select = dgvPersons.CurrentRow.Index;
             tbName.Text = listPerson[select].Name;
@@ -86,12 +92,21 @@ namespace AddressBook
             tbAddress.Text = listPerson[select].Address;
             tbCompany.Text = listPerson[select].Company;
             pbPicture.Image = listPerson[select].Picture;
+         
+            groupCheckBoxAllClear();
+            groupCheckBoxAllUpdate();
 
-            cbFamiy.Checked = false;
-            cbFriend.Checked = false;
-            cbWork.Checked = false;
-            cbOther.Checked = false;
 
+        }
+
+        private void groupCheckBoxAllClear()
+        {
+            cbFamiy.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
+        }
+
+        private void groupCheckBoxAllUpdate()
+        {
+            var select = dgvPersons.CurrentRow.Index;
             foreach (var group in listPerson[select].listGroup)
             {
                 switch (group)
@@ -113,11 +128,41 @@ namespace AddressBook
                 }
             }
         }
-       
 
+        //更新ボタンを押された時の処理
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dgvPersons.CurrentRow == null) return;
+
+            var select = dgvPersons.CurrentRow.Index;
+            listPerson[select].Name = tbName.Text;
+            listPerson[select].MailAddress = tbMailAddress.Text;
+            listPerson[select].Address = tbAddress.Text;
+            listPerson[select].Company = tbCompany.Text;
+            listPerson[select].listGroup = GetCheckBoxGroup();
+            listPerson[select].Picture = pbPicture.Image;
+            dgvPersons.Refresh();//データグリッドビュー更新
+
+        }
+
+        //削除ボタンを押された時の処理
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (dgvPersons.CurrentRow == null) return;
+            listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
+        }
+
+        private void AllDelete()
+        {
+            tbName.Text =tbMailAddress.Text = tbAddress.Text = tbCompany.Text = "";
+            pbPicture.Image = null;
+            groupCheckBoxAllClear();
+        }
 
         private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e){}
         private void Form1_Load(object sender, EventArgs e){}
         private void dgvPersons_Click(object sender, EventArgs e){}
+
+
     }
 }

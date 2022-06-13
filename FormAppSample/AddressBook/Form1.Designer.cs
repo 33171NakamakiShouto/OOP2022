@@ -48,6 +48,8 @@ namespace AddressBook
             this.pbPicture = new System.Windows.Forms.PictureBox();
             this.btPictureClear = new System.Windows.Forms.Button();
             this.ofdFileOpenDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btUpdate = new System.Windows.Forms.Button();
+            this.btdelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
@@ -138,10 +140,12 @@ namespace AddressBook
             // 
             // dgvPersons
             // 
+            this.dgvPersons.AllowUserToAddRows = false;
             this.dgvPersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPersons.Location = new System.Drawing.Point(12, 280);
             this.dgvPersons.MultiSelect = false;
             this.dgvPersons.Name = "dgvPersons";
+            this.dgvPersons.ReadOnly = true;
             this.dgvPersons.RowTemplate.Height = 21;
             this.dgvPersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersons.Size = new System.Drawing.Size(760, 151);
@@ -154,7 +158,7 @@ namespace AddressBook
             // 
             this.btAddPerson.AccessibleRole = System.Windows.Forms.AccessibleRole.Cursor;
             this.btAddPerson.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btAddPerson.Location = new System.Drawing.Point(596, 219);
+            this.btAddPerson.Location = new System.Drawing.Point(529, 219);
             this.btAddPerson.Name = "btAddPerson";
             this.btAddPerson.Size = new System.Drawing.Size(95, 42);
             this.btAddPerson.TabIndex = 10;
@@ -239,11 +243,37 @@ namespace AddressBook
             // 
             this.ofdFileOpenDialog.FileName = "openFileDialog1";
             // 
+            // btUpdate
+            // 
+            this.btUpdate.AccessibleRole = System.Windows.Forms.AccessibleRole.Cursor;
+            this.btUpdate.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btUpdate.Location = new System.Drawing.Point(630, 219);
+            this.btUpdate.Name = "btUpdate";
+            this.btUpdate.Size = new System.Drawing.Size(95, 42);
+            this.btUpdate.TabIndex = 18;
+            this.btUpdate.Text = "更新";
+            this.btUpdate.UseVisualStyleBackColor = true;
+            this.btUpdate.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btdelete
+            // 
+            this.btdelete.AccessibleRole = System.Windows.Forms.AccessibleRole.Cursor;
+            this.btdelete.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btdelete.Location = new System.Drawing.Point(731, 234);
+            this.btdelete.Name = "btdelete";
+            this.btdelete.Size = new System.Drawing.Size(41, 27);
+            this.btdelete.TabIndex = 19;
+            this.btdelete.Text = "削除";
+            this.btdelete.UseVisualStyleBackColor = true;
+            this.btdelete.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 443);
+            this.Controls.Add(this.btdelete);
+            this.Controls.Add(this.btUpdate);
             this.Controls.Add(this.btPictureClear);
             this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.cbOther);
@@ -293,6 +323,8 @@ namespace AddressBook
         private System.Windows.Forms.PictureBox pbPicture;
         private System.Windows.Forms.Button btPictureClear;
         private System.Windows.Forms.OpenFileDialog ofdFileOpenDialog;
+        private System.Windows.Forms.Button btUpdate;
+        private System.Windows.Forms.Button btdelete;
     }
 }
 
