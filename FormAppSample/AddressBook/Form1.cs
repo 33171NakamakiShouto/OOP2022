@@ -46,6 +46,8 @@ namespace AddressBook
 
             listPerson.Add(newPerson);
             AllDelete();
+            btdelete.Enabled = true;
+            btUpdate.Enabled = true;
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -142,7 +144,7 @@ namespace AddressBook
             listPerson[select].listGroup = GetCheckBoxGroup();
             listPerson[select].Picture = pbPicture.Image;
             dgvPersons.Refresh();//データグリッドビュー更新
-
+            AllDelete();           
         }
 
         //削除ボタンを押された時の処理
@@ -150,6 +152,11 @@ namespace AddressBook
         {
             if (dgvPersons.CurrentRow == null) return;
             listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
+            if (listPerson.Count == 0)
+            {
+                btdelete.Enabled = false;
+                btUpdate.Enabled = false;
+            }
         }
 
         private void AllDelete()
@@ -159,8 +166,13 @@ namespace AddressBook
             groupCheckBoxAllClear();
         }
 
-        private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e){}
-        private void Form1_Load(object sender, EventArgs e){}
+        private void Form1_Load(object sender, EventArgs e) 
+        {
+            btdelete.Enabled = false;
+            btUpdate.Enabled = false;
+        }
+
+        private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e){}       
         private void dgvPersons_Click(object sender, EventArgs e){}
 
 

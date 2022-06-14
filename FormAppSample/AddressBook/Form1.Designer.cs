@@ -258,6 +258,7 @@ namespace AddressBook
             // btdelete
             // 
             this.btdelete.AccessibleRole = System.Windows.Forms.AccessibleRole.Cursor;
+            this.btdelete.AllowDrop = true;
             this.btdelete.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btdelete.Location = new System.Drawing.Point(731, 234);
             this.btdelete.Name = "btdelete";
