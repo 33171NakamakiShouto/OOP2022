@@ -34,20 +34,33 @@ namespace AddressBook
         //追加ボタンを押された時の処理
         private void btAddPerson_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tbName.Text))
+            {
+                MessageBox.Show("氏名が入力されていません");
+                return;
+            }
+
             Person newPerson = new Person
             {
                 Name = tbName.Text,
                 MailAddress = tbMailAddress.Text,
                 Address = tbAddress.Text,
-                Company = tbCompany.Text,
+                Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 listGroup = GetCheckBoxGroup(),
             };
+
+            if (cbCompany.Items.IndexOf(cbCompany.Text) == -1)
+            {
+                cbCompany.Items.Add(cbCompany.Text);
+            }
 
             listPerson.Add(newPerson);
             AllDelete();
             btdelete.Enabled = true;
             btUpdate.Enabled = true;
+
+                      
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -92,7 +105,7 @@ namespace AddressBook
             tbName.Text = listPerson[select].Name;
             tbMailAddress.Text = listPerson[select].MailAddress;
             tbAddress.Text = listPerson[select].Address;
-            tbCompany.Text = listPerson[select].Company;
+            cbCompany.Text = listPerson[select].Company;
             pbPicture.Image = listPerson[select].Picture;
          
             groupCheckBoxAllClear();
@@ -140,7 +153,7 @@ namespace AddressBook
             listPerson[select].Name = tbName.Text;
             listPerson[select].MailAddress = tbMailAddress.Text;
             listPerson[select].Address = tbAddress.Text;
-            listPerson[select].Company = tbCompany.Text;
+            listPerson[select].Company = cbCompany.Text;
             listPerson[select].listGroup = GetCheckBoxGroup();
             listPerson[select].Picture = pbPicture.Image;
             dgvPersons.Refresh();//データグリッドビュー更新
@@ -161,7 +174,7 @@ namespace AddressBook
 
         private void AllDelete()
         {
-            tbName.Text =tbMailAddress.Text = tbAddress.Text = tbCompany.Text = "";
+            tbName.Text =tbMailAddress.Text = tbAddress.Text = cbCompany.Text = "";
             pbPicture.Image = null;
             groupCheckBoxAllClear();
         }
@@ -174,7 +187,5 @@ namespace AddressBook
 
         private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e){}       
         private void dgvPersons_Click(object sender, EventArgs e){}
-
-
     }
 }
