@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +22,7 @@ namespace AddressBook
             dgvPersons.DataSource = listPerson;
         }
 
-        private void label3_Click(object sender, EventArgs e){ }
+        private void label3_Click(object sender, EventArgs e) { }
 
         private void btPictureOpen_Click(object sender, EventArgs e)
         {
@@ -48,12 +50,12 @@ namespace AddressBook
                 Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 listGroup = GetCheckBoxGroup(),
+                KindNumber = GetRadioButtonGroup().ToString(),
+                TelNumber = tbTelephoneNumber.Text,
+                Registration = dtpRegistDate.Value,
             };
 
-            if (cbCompany.Items.IndexOf(cbCompany.Text) == -1)
-            {
-                cbCompany.Items.Add(cbCompany.Text);
-            }
+            setcbCompany(cbCompany.Text);
 
             listPerson.Add(newPerson);
             AllDelete();
@@ -61,6 +63,14 @@ namespace AddressBook
             btUpdate.Enabled = true;
 
                       
+        }
+
+        private void setcbCompany(string company)
+        {
+            if (cbCompany.Items.IndexOf(cbCompany.Text) == -1)
+            {
+                cbCompany.Items.Add(cbCompany.Text);
+            }
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -88,6 +98,23 @@ namespace AddressBook
             return listGroup;
         }
 
+        private List<Person.KindNumberType> GetRadioButtonGroup()
+        {
+            var KindNumber = new List<Person.KindNumberType>();
+
+            if (rbHome.Checked)
+            {
+                KindNumber.Add(Person.KindNumberType.自宅);
+            }
+            if (rbCellPhone.Checked)
+            {
+                KindNumber.Add(Person.KindNumberType.携帯);
+            }
+
+
+            return KindNumber;
+        }
+
         private void btPictureClear_Click(object sender, EventArgs e)
         {
             pbPicture.Image = null;
@@ -100,6 +127,18 @@ namespace AddressBook
 
             int index = dgvPersons.CurrentRow.Index;
 
+            tbName.Text = listPerson[index].Name;
+            tbMailAddress.Text = listPerson[index].MailAddress;
+            tbAddress.Text = listPerson[index].Address;
+            cbCompany.Text = listPerson[index].Company;
+            pbPicture.Image = listPerson[index].Picture;
+            tbTelephoneNumber.Text = listPerson[index].TelNumber; 
+
+            dtpRegistDate.Value = listPerson[index].Registration.Year > 1900 ? 
+                listPerson[index].Registration : DateTime.Today;
+
+            groupCheckBoxAllClear();
+
             //tbName.Text = listPerson[0].Name;
             var select = dgvPersons.CurrentRow.Index;
             tbName.Text = listPerson[select].Name;
@@ -107,10 +146,10 @@ namespace AddressBook
             tbAddress.Text = listPerson[select].Address;
             cbCompany.Text = listPerson[select].Company;
             pbPicture.Image = listPerson[select].Picture;
-         
+            tbTelephoneNumber.Text = listPerson[select].TelNumber;
+
             groupCheckBoxAllClear();
             groupCheckBoxAllUpdate();
-
 
         }
 
@@ -156,7 +195,9 @@ namespace AddressBook
             listPerson[select].Company = cbCompany.Text;
             listPerson[select].listGroup = GetCheckBoxGroup();
             listPerson[select].Picture = pbPicture.Image;
+            listPerson[select].TelNumber = tbTelephoneNumber.Text;
             dgvPersons.Refresh();//データグリッドビュー更新
+            EnadledCheck();
             AllDelete();           
         }
 
@@ -165,18 +206,16 @@ namespace AddressBook
         {
             if (dgvPersons.CurrentRow == null) return;
             listPerson.RemoveAt(dgvPersons.CurrentRow.Index);
-            if (listPerson.Count == 0)
-            {
-                btdelete.Enabled = false;
-                btUpdate.Enabled = false;
-            }
+
+            EnadledCheck();
         }
 
         private void AllDelete()
         {
-            tbName.Text =tbMailAddress.Text = tbAddress.Text = cbCompany.Text = "";
+            tbName.Text =tbMailAddress.Text = tbAddress.Text = cbCompany.Text = tbTelephoneNumber.Text="";
             pbPicture.Image = null;
             groupCheckBoxAllClear();
+            rbHome.Checked = rbCellPhone.Checked = false;
         }
 
         private void Form1_Load(object sender, EventArgs e) 
@@ -185,7 +224,72 @@ namespace AddressBook
             btUpdate.Enabled = false;
         }
 
+        //保存ボタンのイベントハンドラ
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            if (sfdSaveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    //バイナリ形式でシリアル化
+                    var bf = new BinaryFormatter();
+
+                    using (FileStream fs = File.Open(sfdSaveDialog.FileName, FileMode.Create))
+                    {
+                        bf.Serialize(fs, listPerson);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        //開くボタンのイベントハンドラ
+        private void btOpen_Click(object sender, EventArgs e)
+        {
+
+            if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    //バイナリ形式で逆シリアル化
+                    var bf = new BinaryFormatter();
+
+                    using (FileStream fs = File.Open(ofdFileOpenDialog.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        listPerson = (BindingList<Person>)bf.Deserialize(fs);
+                        dgvPersons.DataSource = null;
+                        dgvPersons.DataSource = listPerson;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                cbCompany.Items.Clear();
+
+                foreach (var item in listPerson.Select(p => p.Company))
+                {
+                    setcbCompany(item);
+                }
+
+                EnadledCheck();
+
+            }
+        }
+
+        //更新・削除ボタンのマスク処理
+        private void EnadledCheck()
+        {
+            btUpdate.Enabled = btdelete.Enabled = listPerson.Count() > 0 ? true : true;
+        }
+
         private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e){}       
         private void dgvPersons_Click(object sender, EventArgs e){}
+        private void btOpen_Click_1(object sender, EventArgs e){}
+        private void sfdSaveDialog_FileOk(object sender, CancelEventArgs e){}
     }
 }
