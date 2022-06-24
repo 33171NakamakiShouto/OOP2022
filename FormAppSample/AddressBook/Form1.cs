@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AddressBook.Person;
 
 namespace AddressBook
 {
@@ -50,7 +51,7 @@ namespace AddressBook
                 Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 listGroup = GetCheckBoxGroup(),
-                KindNumber = GetRadioButtonGroup().ToString(),
+                KindNumber = GetRadioButtonGroup(),
                 TelNumber = tbTelephoneNumber.Text,
                 Registration = dtpRegistDate.Value,
             };
@@ -98,21 +99,20 @@ namespace AddressBook
             return listGroup;
         }
 
-        private List<Person.KindNumberType> GetRadioButtonGroup()
+        private Person.KindNumberType GetRadioButtonGroup()
         {
-            var KindNumber = new List<Person.KindNumberType>();
+            var selectKindNumber = Person.KindNumberType.その他;
 
-            if (rbHome.Checked)
-            {
-                KindNumber.Add(Person.KindNumberType.自宅);
-            }
             if (rbCellPhone.Checked)
             {
-                KindNumber.Add(Person.KindNumberType.携帯);
+                return Person.KindNumberType.携帯;
+            }
+            if (rbHome.Checked)
+            {
+                return Person.KindNumberType.自宅;
             }
 
-
-            return KindNumber;
+            return selectKindNumber;
         }
 
         private void btPictureClear_Click(object sender, EventArgs e)
@@ -132,31 +132,28 @@ namespace AddressBook
             tbAddress.Text = listPerson[index].Address;
             cbCompany.Text = listPerson[index].Company;
             pbPicture.Image = listPerson[index].Picture;
-            tbTelephoneNumber.Text = listPerson[index].TelNumber; 
+            tbTelephoneNumber.Text = listPerson[index].TelNumber;
+            
 
             dtpRegistDate.Value = listPerson[index].Registration.Year > 1900 ? 
                 listPerson[index].Registration : DateTime.Today;
 
             groupCheckBoxAllClear();
+            groupRadioButtonAllClear();
 
-            //tbName.Text = listPerson[0].Name;
-            var select = dgvPersons.CurrentRow.Index;
-            tbName.Text = listPerson[select].Name;
-            tbMailAddress.Text = listPerson[select].MailAddress;
-            tbAddress.Text = listPerson[select].Address;
-            cbCompany.Text = listPerson[select].Company;
-            pbPicture.Image = listPerson[select].Picture;
-            tbTelephoneNumber.Text = listPerson[select].TelNumber;
-
-            groupCheckBoxAllClear();
             groupCheckBoxAllUpdate();
-
+            groupRadioButtonAllUpdate();
         }
 
         private void groupCheckBoxAllClear()
         {
             cbFamiy.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
         }
+        private void groupRadioButtonAllClear()
+        {
+            rbCellPhone.Checked = rbHome.Checked = false;
+        }
+
 
         private void groupCheckBoxAllUpdate()
         {
@@ -183,6 +180,26 @@ namespace AddressBook
             }
         }
 
+        private void groupRadioButtonAllUpdate()
+        {
+            var select = dgvPersons.CurrentRow.Index;
+            switch (listPerson[select].KindNumber)
+            {
+                case KindNumberType.自宅:
+                    rbHome.Checked = true;
+                    break;
+                case KindNumberType.携帯:
+                    rbCellPhone.Checked = true;
+                    break;
+                case KindNumberType.その他:
+                    break;
+                default:
+                    break;
+            }
+
+
+        }
+
         //更新ボタンを押された時の処理
         private void button1_Click(object sender, EventArgs e)
         {
@@ -196,6 +213,7 @@ namespace AddressBook
             listPerson[select].listGroup = GetCheckBoxGroup();
             listPerson[select].Picture = pbPicture.Image;
             listPerson[select].TelNumber = tbTelephoneNumber.Text;
+            listPerson[select].KindNumber = GetRadioButtonGroup();
             dgvPersons.Refresh();//データグリッドビュー更新
             EnadledCheck();
             AllDelete();           

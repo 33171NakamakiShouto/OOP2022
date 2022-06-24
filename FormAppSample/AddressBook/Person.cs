@@ -38,7 +38,7 @@ namespace AddressBook
         public List<GroupType> listGroup { get; set; }
 
         [System.ComponentModel.DisplayName("番号種別")]
-        public string KindNumber { get; set; }
+        public KindNumberType KindNumber { get; set; }
 
         [System.ComponentModel.DisplayName("電話番号")]
         public string TelNumber { get; set; }
@@ -62,6 +62,7 @@ namespace AddressBook
         {
             自宅,
             携帯,
+            その他,
         }
     }
 }
