@@ -12,21 +12,23 @@ namespace XmlSample
     {
         static void Main(string[] args)
         {
-            var wc = new WebClient();
-            var stream = new WebClient().OpenRead("https://news.yahoo.co.jp/rss/media/abn/all.xml");
+            using (var wc = new WebClient())
+            {
+                var stream = new WebClient().OpenRead("https://news.yahoo.co.jp/rss/media/abn/all.xml");
 
-            var xdoc = XDocument.Load(stream);
-            var xNews = xdoc.Root.Descendants("item");
+                var xdoc = XDocument.Load(stream);
+                var xNews = xdoc.Root.Descendants("item").Select(x => x.Element("title"));
                 //Elements().OrderBy(x => ((DateTime)x.Element("birth")).Year >= 1900);
 
-            foreach (var date in xNews)
-            {
-                /*var xname = xnovelist.Element("name");
+                foreach (var date in xNews)
+                {
+                    /*var xname = xnovelist.Element("name");
 
-                var birth = (DateTime)xnovelist.Element("birth");
-                Console.WriteLine("{0} {1}",xname.Value,birth.ToShortDateString());*/
-                Console.WriteLine(date);
-            }
+                    var birth = (DateTime)xnovelist.Element("birth");
+                    Console.WriteLine("{0} {1}",xname.Value,birth.ToShortDateString());*/
+                    Console.WriteLine(date);
+                }
+            }            
         }
     }
 }
