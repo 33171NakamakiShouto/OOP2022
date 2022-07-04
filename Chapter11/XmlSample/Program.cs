@@ -12,23 +12,18 @@ namespace XmlSample
     {
         static void Main(string[] args)
         {
-            using (var wc = new WebClient())
+            var xdoc = XDocument.Load("novelists.xml");
+            var novelists = xdoc.Root.Elements()
+                                .Select(x => new {
+                                    Name = (string)x.Element("name"),
+                                    Birth = (DateTime)x.Element("birth"),
+                                    Death = (DateTime)x.Element("death")
+                                });
+            foreach (var novelist in novelists)
             {
-                var stream = new WebClient().OpenRead("https://news.yahoo.co.jp/rss/media/abn/all.xml");
-
-                var xdoc = XDocument.Load(stream);
-                var xNews = xdoc.Root.Descendants("item").Select(x => x.Element("title"));
-                //Elements().OrderBy(x => ((DateTime)x.Element("birth")).Year >= 1900);
-
-                foreach (var date in xNews)
-                {
-                    /*var xname = xnovelist.Element("name");
-
-                    var birth = (DateTime)xnovelist.Element("birth");
-                    Console.WriteLine("{0} {1}",xname.Value,birth.ToShortDateString());*/
-                    Console.WriteLine(date);
-                }
-            }            
+                Console.WriteLine("{0} ({1}-{2})",
+                                   novelist.Name, novelist.Birth.Year, novelist.Death.Year);
+            }
         }
     }
 }
