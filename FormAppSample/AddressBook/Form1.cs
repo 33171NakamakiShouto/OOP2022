@@ -309,5 +309,6 @@ namespace AddressBook
         private void dgvPersons_Click(object sender, EventArgs e){}
         private void btOpen_Click_1(object sender, EventArgs e){}
         private void sfdSaveDialog_FileOk(object sender, CancelEventArgs e){}
+        private void cbCompany_SelectedIndexChanged(object sender, EventArgs e){}
     }
 }

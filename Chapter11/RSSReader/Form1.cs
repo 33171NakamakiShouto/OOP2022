@@ -14,13 +14,12 @@ namespace RSSReader
 {
     public partial class Form1 : Form
     {
-        List<String> titleList = new List<string>();
-        List<String> linkList = new List<string>();
-
         public Form1()
         {
             InitializeComponent();
         }
+
+        IEnumerable<XElement> RssItem ;
 
         private void btRssGet_Click(object sender, EventArgs e)
         {
@@ -29,29 +28,41 @@ namespace RSSReader
                 var stream = wc.OpenRead(cbRssUrl.Text);
 
                 var Rssdoc = XDocument.Load(stream);
-                var RssItem = Rssdoc.Root.Descendants("item");
+                RssItem = Rssdoc.Root.Descendants("item");
 
-                foreach (var RssDate in RssItem.Select(x => x.Element("title")))
+                foreach (var RssDate in RssItem)
                 {
-                    lbRssTitle.Items.Add(RssDate);
-                    string newstring = new string
-                    {
-
-                    };
+                    lbRssTitle.Items.Add((string)RssDate.Element("title"));
                 }
             }
-           
+
+            setcbRssUrl(cbRssUrl.Text);
+        }
+
+        private void setcbRssUrl(string url)
+        {
+            if (cbRssUrl.Items.IndexOf(cbRssUrl.Text) == -1)
+            {
+                cbRssUrl.Items.Add(cbRssUrl.Text);
+            }
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e)
         {
+            if (lbRssTitle.SelectedItem == null) return;
             var index = lbRssTitle.SelectedIndex;
-            var stream = new WebClient().OpenRead(cbRssUrl.Text);
-
-            var Rssdoc = XDocument.Load(stream);
-            var RssItem = Rssdoc.Root.Descendants("item").Select(x => x.Element("link"));
+            wvBrouser.Navigate((string)RssItem.ElementAt(index).Element("link"));
             
-            wbBrowser.DocumentText = index.ToString();
+        }
+
+        private void btReturn_Click(object sender, EventArgs e)
+        {
+            wvBrouser.GoBack();
+        }
+
+        private void btNext_Click(object sender, EventArgs e)
+        {
+            wvBrouser.GoForward();
         }
     }
 }
