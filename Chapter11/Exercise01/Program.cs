@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,16 +83,6 @@ namespace Exercise01
             var xdoc = XDocument.Load(file);
             xdoc.Root.Add(element);
 
-            foreach (var xsoccer in xdoc.Root.Elements())
-            {
-                var xname = xsoccer.Element("name");
-                var xkanji = xname.Attribute("kanji");
-                var xteammembers = xsoccer.Element("teammembers");
-                var xfirstplayed = xsoccer.Element("firstplayed");
-
-                Console.WriteLine("[競技名]{0}|{1} <{2}人> [スタート時期 {3}年]", xkanji.Value,xname.Value,xteammembers.Value,xfirstplayed.Value);
-                Console.WriteLine();
-            }
             xdoc.Save(newfile);
         }
     }
