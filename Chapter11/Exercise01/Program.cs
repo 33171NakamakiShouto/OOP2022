@@ -21,6 +21,10 @@ namespace Exercise01
 
             var newfile = "sports.xml";
             Exercise1_4(file, newfile);
+
+            // これは確認用
+            var text = File.ReadAllText(newfile);
+            Console.WriteLine(text);
         }
 
         private static void Exercise1_1(string file)
@@ -70,7 +74,7 @@ namespace Exercise01
 
         private static void Exercise1_4(string file, string newfile)
         {
-            var element = new XElement(newfile,
+            var element = new XElement("ballsport",
                                 new XElement("name", "サッカーボール", new XAttribute("kanji", "蹴球")),
                                 new XElement("teammembers", "9"),
                                 new XElement("firstplayed", "1863")
@@ -88,6 +92,7 @@ namespace Exercise01
                 Console.WriteLine("[競技名]{0}|{1} <{2}人> [スタート時期 {3}年]", xkanji.Value,xname.Value,xteammembers.Value,xfirstplayed.Value);
                 Console.WriteLine();
             }
+            xdoc.Save(newfile);
         }
     }
 }
