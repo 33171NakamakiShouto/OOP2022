@@ -35,7 +35,7 @@ namespace Exercise01
 
             foreach (var ballSport in ballSports)
             {
-                Console.WriteLine("[競技名]{0} - [プレー人数]{1}人", ballSport.Name, ballSport.TeamMembers);
+                Console.WriteLine("[競技名]{0} | [プレー人数]{1}人", ballSport.Name, ballSport.TeamMembers);
             }
         }
 
@@ -51,23 +51,43 @@ namespace Exercise01
                                     });
             foreach (var ballSport in ballSports)
             {
-                Console.WriteLine("{0} ({1})",ballSport.Name,ballSport.FirstPlayed);
+                Console.WriteLine("{0} ({1}年)",ballSport.Name,ballSport.FirstPlayed);
             }
         }
 
         private static void Exercise1_3(string file)
         {
             var xdoc = XDocument.Load(file);
-            var ballSports = xdoc.Root.Elements("teammembers")
-                                        .Max();
-
-                Console.WriteLine((string)ballSports.Element("name"));
-            
+            var ballSports = xdoc.Root.Elements()
+                                        .Select(x => new
+                                        {
+                                            Name = x.Element("name").Value,
+                                            Teammembers = x.Element("teammembers").Value,
+                                        })
+                                        .OrderByDescending(x => int.Parse(x.Teammembers)).FirstOrDefault();
+            Console.WriteLine("{0}　<{1}人>",ballSports.Name,ballSports.Teammembers);
         }
 
         private static void Exercise1_4(string file, string newfile)
         {
-            
+            var element = new XElement(newfile,
+                                new XElement("name", "サッカーボール", new XAttribute("kanji", "蹴球")),
+                                new XElement("teammembers", "9"),
+                                new XElement("firstplayed", "1863")
+                                );
+            var xdoc = XDocument.Load(file);
+            xdoc.Root.Add(element);
+
+            foreach (var xsoccer in xdoc.Root.Elements())
+            {
+                var xname = xsoccer.Element("name");
+                var xkanji = xname.Attribute("kanji");
+                var xteammembers = xsoccer.Element("teammembers");
+                var xfirstplayed = xsoccer.Element("firstplayed");
+
+                Console.WriteLine("[競技名]{0}|{1} <{2}人> [スタート時期 {3}年]", xkanji.Value,xname.Value,xteammembers.Value,xfirstplayed.Value);
+                Console.WriteLine();
+            }
         }
     }
 }
