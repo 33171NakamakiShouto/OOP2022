@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -15,9 +13,28 @@ namespace Exercise01
     {
         [XmlElement(ElementName = "id")]
         public int Id { get; set; }
-        [XmlElement(ElementName = "name")]
+        [XmlElement(ElementName = "name")]       
         public string Name { get; set; }
         [XmlElement(ElementName = "hiredate")]
+        public DateTime HireDate { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[id = {0}, name = {1}, hiredate = {2}]",
+                                  Id, Name, HireDate);
+        }
+    }
+
+    [DataContract(Name = "Employee2")]
+    public class Employee2
+    {
+        [XmlIgnore]
+        public int Id { get; set; }
+
+        [DataMember(Name = "Name")]
+        public string Name { get; set; }
+
+        [DataMember(Name = "HireDate")]
         public DateTime HireDate { get; set; }
     }
 
@@ -28,7 +45,7 @@ namespace Exercise01
             Exercise1_1("employee.xml");
 
             // これは確認用
-            Console.WriteLine(File.ReadAllText("employee.xml"));
+            //Console.WriteLine(File.ReadAllText("employee.xml"));
             Console.WriteLine();
 
             Exercise1_2("employees.xml");
@@ -52,22 +69,22 @@ namespace Exercise01
                 HireDate = new DateTime(2001, 5, 10)
             };
 
-            using (var writer = XmlWriter.Create("employee.xml"))
+            using (var writer = XmlWriter.Create(outfile))
             {
                 var serializer = new XmlSerializer(emp.GetType());
                 serializer.Serialize(writer, emp);
             }
 
-            using (var reader = XmlReader.Create("employee.xml"))
+            using (var reader = XmlReader.Create(outfile))
             {
                 var serializer = new XmlSerializer(typeof(Employee));
                 var employee = serializer.Deserialize(reader) as Employee;
-                Console.WriteLine(employee);
 
+                Console.WriteLine(employee);
             }
         }
 
-        private static void Exercise1_2(string v)
+        private static void Exercise1_2(string outfile)
         {
             var emp = new Employee[]
             {
@@ -86,16 +103,16 @@ namespace Exercise01
                 
             };
 
-            using (var writer = XmlWriter.Create("employees.xml"))
+            using (var writer = XmlWriter.Create(outfile))
             {
                 var serializer = new XmlSerializer(emp.GetType());
                 serializer.Serialize(writer, emp);
             }
         }
 
-        private static void Exercise1_3(string v)
+        private static void Exercise1_3(string outfile)
         {
-            using (var reader = XmlReader.Create("employees.xml"))
+            using (var reader = XmlReader.Create(outfile))
             {
                 var serializer = new XmlSerializer(typeof(Employee[]));
                 var employee = serializer.Deserialize(reader) as Employee[];
@@ -106,47 +123,32 @@ namespace Exercise01
             }
         }
 
-        private static void Exercise1_4(string v)
+        private static void Exercise1_4(string outfilev)
         {
-            var emp = new Employee[]
+            var emps = new Employee2[]
             {
-                new Employee
+                new Employee2
                 {
                     Id = 123,
                     Name = "井出　幸太郎",
                     HireDate = new DateTime(2001, 5, 10)
                 },
-                new Employee
+                new Employee2
                 {
                     Id = 456,
                     Name = "中澤　康介",
                     HireDate = new DateTime(2002, 1, 3),
                 },
-
             };
 
-            var settings = new XmlWriterSettings
+            //シリアル化
+            using (var stream = new FileStream(outfilev, FileMode.Create, FileAccess.Write))
             {
-                Encoding = new System.Text.UTF8Encoding(false),
-                Indent = true,
-                IndentChars = "  ",
-            };
-
-            using (var writer = XmlWriter.Create("employees.json", settings))
-            {
-                var serializer = new DataContractJsonSerializer(emp.GetType()); //P185
-                serializer.WriteObject(writer, emp);
-            }
-
-            using (var reader = XmlReader.Create("employees.json"))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(Employee[]));
-                var employee = serializer.ReadObject(reader) as Employee[];
-                //Console.WriteLine(novel);
-                foreach (var employees in employee)
+                var serializer = new DataContractJsonSerializer(emps.GetType(),new DataContractJsonSerializerSettings
                 {
-                    Console.WriteLine(employees);
-                }
+                    DateTimeFormat = new DateTimeFormat("yyyy-MM-dd")
+                }); 
+                serializer.WriteObject(stream, emps);
             }
         }
     }
