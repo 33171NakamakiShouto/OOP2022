@@ -131,6 +131,7 @@ namespace AddressBook
             this.tbMailAddress.Name = "tbMailAddress";
             this.tbMailAddress.Size = new System.Drawing.Size(313, 31);
             this.tbMailAddress.TabIndex = 6;
+            this.tbMailAddress.TextChanged += new System.EventHandler(this.tbMailAddress_TextChanged);
             // 
             // tbAddress
             // 
@@ -344,6 +345,7 @@ namespace AddressBook
             this.gbKindNumber.TabIndex = 26;
             this.gbKindNumber.TabStop = false;
             this.gbKindNumber.Text = "種別";
+            this.gbKindNumber.Enter += new System.EventHandler(this.gbKindNumber_Enter);
             // 
             // rbCellPhone
             // 
@@ -364,6 +366,7 @@ namespace AddressBook
             this.rbHome.TabIndex = 0;
             this.rbHome.Text = "自宅";
             this.rbHome.UseVisualStyleBackColor = true;
+            this.rbHome.CheckedChanged += new System.EventHandler(this.rbHome_CheckedChanged);
             // 
             // tbTelephoneNumber
             // 

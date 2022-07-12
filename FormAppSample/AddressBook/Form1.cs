@@ -310,5 +310,8 @@ namespace AddressBook
         private void btOpen_Click_1(object sender, EventArgs e){}
         private void sfdSaveDialog_FileOk(object sender, CancelEventArgs e){}
         private void cbCompany_SelectedIndexChanged(object sender, EventArgs e){}
+        private void tbMailAddress_TextChanged(object sender, EventArgs e){}
+        private void rbHome_CheckedChanged(object sender, EventArgs e){}
+        private void gbKindNumber_Enter(object sender, EventArgs e){}
     }
 }
