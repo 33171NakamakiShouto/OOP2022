@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,9 @@ namespace CarReportSystem
 
         [System.ComponentModel.DisplayName("レポート")]
         public string Report { get; set; }
+
+        [System.ComponentModel.DisplayName("画像")]
+        public Image Picture { get; set; }
 
 
         public enum MakerType

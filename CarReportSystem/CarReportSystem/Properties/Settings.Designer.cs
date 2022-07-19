@@ -25,5 +25,7 @@ namespace CarReportSystem.Properties
                 return defaultInstance;
             }
         }
+
+        public object ColorSettings { get; internal set; }
     }
 }

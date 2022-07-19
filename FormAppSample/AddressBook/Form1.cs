@@ -31,7 +31,7 @@ namespace AddressBook
             {
                 pbPicture.Image = Image.FromFile(ofdFileOpenDialog.FileName);
             }
-            
+
         }
 
         //追加ボタンを押された時の処理
@@ -302,7 +302,7 @@ namespace AddressBook
         //更新・削除ボタンのマスク処理
         private void EnadledCheck()
         {
-            btUpdate.Enabled = btdelete.Enabled = listPerson.Count() > 0 ? true : true;
+            btUpdate.Enabled = btdelete.Enabled = listPerson.Count() > 0 ? true : false;
         }
 
         private void dgvPersons_CellContentClick(object sender, DataGridViewCellEventArgs e){}       
@@ -313,5 +313,6 @@ namespace AddressBook
         private void tbMailAddress_TextChanged(object sender, EventArgs e){}
         private void rbHome_CheckedChanged(object sender, EventArgs e){}
         private void gbKindNumber_Enter(object sender, EventArgs e){}
+        private void pbPicture_Click(object sender, EventArgs e){}
     }
 }
