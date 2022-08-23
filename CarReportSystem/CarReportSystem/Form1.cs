@@ -31,7 +31,7 @@ namespace CarReportSystem
         {
             InitializeComponent();
             dgvTdrms.DataSource = listCarReport;
-
+            
         }
         
 
@@ -276,17 +276,16 @@ namespace CarReportSystem
         
 
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(cdColorSelect.ShowDialog() == DialogResult.OK)
+        {            
+            if (cdColorSelect.ShowDialog() == DialogResult.OK)
             {
                 BackColor = cdColorSelect.Color;
-                settings.MainFormColor = cdColorSelect.Color;//設定オブジェクトにセット
+                settings.MainFormColor = cdColorSelect.Color.ToArgb();//設定オブジェクトにセット
             }
         }
 
         private void LoadColorSelect(ColorDialog Settings)
-        {
-            
+        {          
             using (var reader = XmlReader.Create("Settings"))
             {
                 var serializer = new XmlSerializer(typeof(Settings));
@@ -305,6 +304,7 @@ namespace CarReportSystem
             }
         }
 
+        //とじる
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             using (var writer = XmlWriter.Create("Settings.xml"))
@@ -313,6 +313,8 @@ namespace CarReportSystem
                 serializer.WriteObject(writer, settings);
             }
         }
+
+        //ひらく
         private void Form1_Load(object sender, EventArgs e)
         {
             btCorrReport.Enabled = btDelReport.Enabled = false;
@@ -320,9 +322,8 @@ namespace CarReportSystem
             using (var reader = XmlReader.Create("Settings.xml"))
             {
                 var serializer = new DataContractSerializer(typeof(Settings));
-                var employee = serializer.ReadObject(reader) as Settings;
-                Console.WriteLine(employee);
-                BackColor = employee.MainFormColor;
+                settings = serializer.ReadObject(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFormColor);
             }
         }
     }

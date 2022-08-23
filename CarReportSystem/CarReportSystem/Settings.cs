@@ -12,6 +12,6 @@ namespace CarReportSystem
     public class Settings
     {
         [System.ComponentModel.DisplayName("色設定")]
-        public Color MainFormColor { get; set; }
+        public int MainFormColor { get; set; }
     }
 }
