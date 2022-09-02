@@ -168,8 +168,7 @@ namespace CarReportSystem
             this.rbSubaru.TabIndex = 9;
             this.rbSubaru.TabStop = true;
             this.rbSubaru.Text = "スバル";
-            this.rbSubaru.UseVisualStyleBackColor = true;
-            this.rbSubaru.CheckedChanged += new System.EventHandler(this.rbSubaru_CheckedChanged);
+            this.rbSubaru.UseVisualStyleBackColor = true;           
             // 
             // rbOutsideCar
             // 
@@ -180,8 +179,7 @@ namespace CarReportSystem
             this.rbOutsideCar.TabIndex = 10;
             this.rbOutsideCar.TabStop = true;
             this.rbOutsideCar.Text = "外車";
-            this.rbOutsideCar.UseVisualStyleBackColor = true;
-            this.rbOutsideCar.CheckedChanged += new System.EventHandler(this.rbOutsideCar_CheckedChanged);
+            this.rbOutsideCar.UseVisualStyleBackColor = true;           
             // 
             // rbOther
             // 
@@ -445,7 +443,7 @@ namespace CarReportSystem
             this.Text = "試乗レポート管理システム";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.BackColorChanged += new System.EventHandler(this.Form1_BackColorChanged);
+            //this.BackColorChanged += new System.EventHandler(this.Form1_BackColorChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTdrms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.menuStrip1.ResumeLayout(false);

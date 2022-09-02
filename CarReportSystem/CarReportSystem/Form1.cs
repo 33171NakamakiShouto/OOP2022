@@ -18,11 +18,8 @@ namespace CarReportSystem
 {
     public partial class Form1 : Form
     {
-        private void rbSubaru_CheckedChanged(object sender, EventArgs e) { }
-        private void rbOutsideCar_CheckedChanged(object sender, EventArgs e) { }
-        private void Form1_BackColorChanged(object sender, EventArgs e) { }
 
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
 
         BindingList<CarReport> listCarReport = new BindingList<CarReport>();
@@ -316,14 +313,23 @@ namespace CarReportSystem
 
         //ひらく
         private void Form1_Load(object sender, EventArgs e)
-        {
-            btCorrReport.Enabled = btDelReport.Enabled = false;
-
-            using (var reader = XmlReader.Create("Settings.xml"))
+        {         
+            try
             {
-                var serializer = new DataContractSerializer(typeof(Settings));
-                settings = serializer.ReadObject(reader) as Settings;
-                BackColor = Color.FromArgb(settings.MainFormColor);
+                using (var reader = XmlReader.Create("Settings.xml"))
+                {
+                    var serializer = new DataContractSerializer(typeof(Settings));
+                    settings = serializer.ReadObject(reader) as Settings;
+                    BackColor = Color.FromArgb(settings.MainFormColor);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                btCorrReport.Enabled = btDelReport.Enabled = false;
             }
         }
     }
