@@ -46,13 +46,6 @@ namespace AddressBook
                    
         }
 
-        private void btConnect_Click(object sender, EventArgs e)
-        {
-            // TODO: このコード行はデータを 'infosys202216DataSet.AddressToble' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
-            this.addressTobleTableAdapter.Fill(this.infosys202216DataSet.AddressToble);
-
-        }
-
         private void btUpdate_Click(object sender, EventArgs e)
         {
              addressTobleDataGridView.CurrentRow.Cells[1].Value = tbName.Text;
@@ -102,6 +95,11 @@ namespace AddressBook
             DataRow newRow = infosys202216DataSet.AddressToble.NewRow();
             newRow[1] = tbName.Text;
             newRow[2] = tbAddress.Text;
+            newRow[3] = tbTel.Text;
+            newRow[4] = tbMail.Text;
+            newRow[5] = tbMemo.Text;
+            newRow[6] = ImageToByteArray(pbImage.Image);
+
             //データセットへ新しいレコードを追加
             infosys202216DataSet.AddressToble.Rows.Add(newRow);
             //データベース更新
@@ -117,6 +115,28 @@ namespace AddressBook
         private void btNameSearch_Click(object sender, EventArgs e)
         {
             addressTobleTableAdapter.FillByName(infosys202216DataSet.AddressToble,tbNameSearch.Text);
-        }        
+        }
+
+        private void btClear_Click(object sender, EventArgs e)
+        {
+            tbName.Text = tbAddress.Text = tbTel.Text = tbMail.Text = tbMemo.Text = "";
+            pbImage.Image = null;
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void データベース接続ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: このコード行はデータを 'infosys202216DataSet.AddressToble' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.addressTobleTableAdapter.Fill(this.infosys202216DataSet.AddressToble);
+        }
+
+        private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Version().ShowDialog();
+        }
     }
 }
