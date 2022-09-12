@@ -313,7 +313,9 @@ namespace CarReportSystem
 
         //ひらく
         private void Form1_Load(object sender, EventArgs e)
-        {         
+        {
+            // TODO: このコード行はデータを 'infosys202216DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportDBTableAdapter.Fill(this.infosys202216DataSet.CarReportDB);
             try
             {
                 using (var reader = XmlReader.Create("Settings.xml"))
@@ -331,6 +333,19 @@ namespace CarReportSystem
             {
                 btCorrReport.Enabled = btDelReport.Enabled = false;
             }
+        }
+
+        private void tbReport_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void carReportDBBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202216DataSet);
+
         }
     }
 }
