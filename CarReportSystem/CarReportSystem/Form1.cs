@@ -54,7 +54,7 @@ namespace CarReportSystem
             setcbCarName(cbCarName.Text);
 
             AllDelete();            
-            btDelReport.Enabled = true;
+            //btDelReport.Enabled = true;
         }
 
         // バイト配列をImageオブジェクトに変換
@@ -103,7 +103,7 @@ namespace CarReportSystem
 
         private void setcbRecorder(string company)
         {
-            if (cbRecorder.Items.IndexOf(cbRecorder.Text) == -1)
+            if (!(cbRecorder.Items.Contains(cbRecorder.Text)))
             {
                 cbRecorder.Items.Add(cbRecorder.Text);
             }
@@ -111,7 +111,7 @@ namespace CarReportSystem
 
         private void setcbCarName(string company)
         {
-            if (cbCarName.Items.IndexOf(cbCarName.Text) == -1)
+            if ((!cbCarName.Items.Contains(cbCarName.Text) ))
             {
                 cbCarName.Items.Add(cbCarName.Text);
             }
@@ -151,47 +151,55 @@ namespace CarReportSystem
         //データグリッドビューをクリックした時のイベントハンドラ
         private void dgvTdrms_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvTdrms.CurrentRow == null) return;
+        //    if (dgvTdrms.CurrentRow == null) return;
 
-            int index = dgvTdrms.CurrentRow.Index;
+        //    int index = dgvTdrms.CurrentRow.Index;
 
-            cbRecorder.Text = listCarReport[index].Recorder;
-            cbCarName.Text = listCarReport[index].CarName;
-            tbReport.Text = listCarReport[index].Report;
-            tbReport.Text = listCarReport[index].Report;
-            pbPicture.Image = listCarReport[index].Picture;
+        //    cbRecorder.Text = listCarReport[index].Recorder;
+        //    cbCarName.Text = listCarReport[index].CarName;
+        //    tbReport.Text = listCarReport[index].Report;
+        //    tbReport.Text = listCarReport[index].Report;
+        //    pbPicture.Image = listCarReport[index].Picture;
 
-            dtpRegistDate.Value = listCarReport[index].Registration.Year > 1900 ?
-                listCarReport[index].Registration : DateTime.Today;
+        //    dtpRegistDate.Value = listCarReport[index].Registration.Year > 1900 ?
+        //        listCarReport[index].Registration : DateTime.Today;
 
-            grouoMakerTypeAllClear();
-            grouoMakerTypeAllUpdate();
+
+
+        //    grouoMakerTypeAllClear();
+        //    GetMakerGroup();
         }
 
         private void grouoMakerTypeAllUpdate()
         {
-            var select = carReportDBDataGridView.CurrentRow.Index;
-            switch (listCarReport[select].Maker)
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "トヨタ" )
             {
-                case MakerType.トヨタ:
-                    rbToeta.Checked = true;
-                    break;
-                case MakerType.日産:
-                    rbNissan.Checked = true;
-                    break;
-                case MakerType.ホンダ:
-                     rbHonda.Checked = true;
-                    break;
-                case MakerType.スバル:
-                    rbSubaru.Checked = true;
-                    break;
-                case MakerType.外車:
-                    rbOutsideCar.Checked = true;
-                    break;
-                case MakerType.その他:
-                    break;
-                default:
-                    break;
+                rbToeta.Checked = true;
+            }
+
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "日産")
+            {
+                rbNissan.Checked = true;
+            }
+
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "ホンダ")
+            {
+                rbHonda.Checked = true;
+            }
+
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "スバル")
+            {
+                rbSubaru.Checked = true;
+            }
+
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "外車")
+            {
+                rbOutsideCar.Checked = true;
+            }
+
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "その他")
+            {
+                rbOther.Checked = true;
             }
         }
 
@@ -249,8 +257,13 @@ namespace CarReportSystem
 
         //ひらく
         private void Form1_Load(object sender, EventArgs e)
-        {            
-            
+        {
+            using (var reader = XmlReader.Create("Settings.xml"))
+            {
+                var serializer = new DataContractSerializer(typeof(Settings));
+                settings = serializer.ReadObject(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFormColor);
+            }
         }
 
         private void tbReport_TextChanged(object sender, EventArgs e)
@@ -262,6 +275,8 @@ namespace CarReportSystem
         {
             // TODO: このコード行はデータを 'infosys202216DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportDBTableAdapter.Fill(this.infosys202216DataSet.CarReportDB);
+
+            btUpdate.Enabled = btAddReport.Enabled = true;
         }
 
         private void btUpdate_Click(object sender, EventArgs e)
@@ -295,6 +310,16 @@ namespace CarReportSystem
                 pbPicture.Image = ByteArrayToImage((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
 
             else pbPicture.Image = null;
+        }
+
+        private void btNameSearch_Click(object sender, EventArgs e)
+        {
+           carReportDBTableAdapter.FillByName(infosys202216DataSet.CarReportDB, tbNameSearch.Text);
+        }
+
+        private void btAllDelete_Click(object sender, EventArgs e)
+        {
+            AllDelete();
         }
     }
 }
