@@ -103,17 +103,17 @@ namespace CarReportSystem
 
         private void setcbRecorder(string company)
         {
-            if (!(cbRecorder.Items.Contains(cbRecorder.Text)))
+            if (!(cbRecorder.Items.Contains(company)))
             {
-                cbRecorder.Items.Add(cbRecorder.Text);
+                cbRecorder.Items.Add(company);
             }
         }
 
         private void setcbCarName(string company)
         {
-            if ((!cbCarName.Items.Contains(cbCarName.Text) ))
+            if ((!cbCarName.Items.Contains(company) ))
             {
-                cbCarName.Items.Add(cbCarName.Text);
+                cbCarName.Items.Add(company);
             }
         }
 
@@ -143,8 +143,15 @@ namespace CarReportSystem
         //削除ボタン
         private void btDelReport_Click(object sender, EventArgs e)
         {
-            if (dgvTdrms.CurrentRow == null) return;
-            listCarReport.RemoveAt(dgvTdrms.CurrentRow.Index);
+            DataGridViewSelectedRowCollection src = carReportDBDataGridView.SelectedRows;
+            for (int i = src.Count - 1; i >= 0; i--)
+            {
+                carReportDBDataGridView.Rows.RemoveAt(src[i].Index);
+            }
+
+            this.Validate();
+            this.carReportDBBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202216DataSet);
 
         }
 
@@ -273,10 +280,19 @@ namespace CarReportSystem
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            AllDelete();
+
             // TODO: このコード行はデータを 'infosys202216DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportDBTableAdapter.Fill(this.infosys202216DataSet.CarReportDB);
 
-            btUpdate.Enabled = btAddReport.Enabled = true;
+            for (int i = 0; i < carReportDBDataGridView.RowCount; i++)
+            {
+                setcbRecorder(carReportDBDataGridView.Rows[i].Cells[2].Value.ToString());
+                setcbCarName(carReportDBDataGridView.Rows[i].Cells[4].Value.ToString());
+            }
+
+
+            btUpdate.Enabled = btAddReport.Enabled = btDelReport.Enabled = true;
         }
 
         private void btUpdate_Click(object sender, EventArgs e)
