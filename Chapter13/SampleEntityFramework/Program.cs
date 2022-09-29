@@ -11,6 +11,7 @@ namespace SampleEntityFramework
     {
         static void Main(string[] args)
         {
+            //2
             var books = GetAllBooks();
             foreach (var book in books)
             {
@@ -18,6 +19,7 @@ namespace SampleEntityFramework
             }
             Console.WriteLine("----------------------------");
 
+            //3
             var MaxBook = GetMaxBooks();
             foreach (var book in MaxBook)
             {
@@ -25,9 +27,30 @@ namespace SampleEntityFramework
             }
             Console.WriteLine("----------------------------");
 
-           
+            //4
 
-            //var books = GetBooks();            
+            Console.WriteLine("----------------------------");
+
+            //5
+            using (var db = new BooksDbContext())
+            {
+                var authors = db.Authors
+                    .OrderByDescending(b => b.Birthday)
+                    .ToList();
+
+                foreach (var Author in authors)
+                {
+                    Console.WriteLine("{0} {1:yyyy/MM}", Author.Name, Author.Birthday);
+                    foreach (var book in Author.Books)
+                    {
+                        Console.WriteLine(" [{0}] {1}年",
+                                book.Title, book.PublishedYear,
+                                book.Author.Name, book.Author.Birthday);
+                    }
+                }
+            }
+            
+            Console.WriteLine("----------------------------");
 
             //InsertBooks();
             //AddAuthors();
@@ -62,6 +85,17 @@ namespace SampleEntityFramework
                 return db.Books
                     .Include(nameof(Author))
                     .Where(a => a.Title.Length == db.Books.Max(x => x.Title.Length))                    
+                    .ToList();
+            }
+        }
+
+        static IEnumerable<Book> GetBooks_4()
+        {
+            using (var db = new BooksDbContext())
+            {
+                return db.Books
+                    .Include(nameof(Author))
+                    .OrderByDescending(x=>x.PublishedYear)
                     .ToList();
             }
         }
