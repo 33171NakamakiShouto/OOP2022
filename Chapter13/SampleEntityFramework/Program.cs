@@ -11,15 +11,15 @@ namespace SampleEntityFramework
     {
         static void Main(string[] args)
         {
-            //var books = GetAllBooks();
-            //foreach (var book in books)
-            //{
-            //    Console.WriteLine($"{book.Title}{book.PublishedYear}");
-            //}
+            var books = GetAllBooks();
+            foreach (var book in books)
+            {
+                Console.WriteLine($"{book.Title}{book.PublishedYear}");
+            }
 
             //InsertBooks();
             //AddAuthors();
-            AddBooks();
+            //AddBooks();
 
         }        
 
@@ -79,34 +79,34 @@ namespace SampleEntityFramework
         {
             using (var db = new BooksDbContext())
             {
-                var author1 = new Author
-                {
-                    Birthday = new DateTime(1878, 12, 7),
-                    Gender = "F",
-                    Name = "与謝野晶子"
-                };
-                db.Authors.Add(author1);
-                var author2 = new Author
-                {
-                    Birthday = new DateTime(1896, 8, 27),
-                    Gender = "M",
-                    Name = "宮沢賢治"
-                };
-                db.Authors.Add(author2);
-                var author3 = new Author
-                {
-                    Birthday = new DateTime(1888, 12, 26),
-                    Gender = "M",
-                    Name = "菊池寛"
-                };
-                db.Authors.Add(author3);
+                //var author1 = new Author
+                //{
+                //    Birthday = new DateTime(1878, 12, 7),
+                //    Gender = "F",
+                //    Name = "与謝野晶子"
+                //};
+                //db.Authors.Add(author1);
+                //var author2 = new Author
+                //{
+                //    Birthday = new DateTime(1896, 8, 27),
+                //    Gender = "M",
+                //    Name = "宮沢賢治"
+                //};
+                //db.Authors.Add(author2);
+                //var author3 = new Author
+                //{
+                //    Birthday = new DateTime(1888, 12, 26),
+                //    Gender = "M",
+                //    Name = "菊池寛"
+                //};
+                //db.Authors.Add(author3);
                 var author4 = new Author
                 {
                     Birthday = new DateTime(1899, 6, 14),
                     Gender = "M",
                     Name = "川端康成"
                 };
-                db.Authors.Add(author2);
+                db.Authors.Add(author4);
                 db.SaveChanges();
             }
         }
@@ -115,22 +115,22 @@ namespace SampleEntityFramework
         {
             using (var db = new BooksDbContext())
             {
-                var author1 = db.Authors.Single(a => a.Name == "与謝野晶子");
-                var book1 = new Book
-                {
-                    Title = "みだれ髪",
-                    PublishedYear = 2000,
-                    Author = author1,
-                };
-                db.Books.Add(book1);
-                var author2 = db.Authors.Single(a => a.Name == "宮沢賢治");
-                var book2 = new Book
-                {
-                    Title = "銀河鉄道の夜",
-                    PublishedYear = 1989,
-                    Author = author2,
-                };
-                db.Books.Add(book2);
+                //var author1 = db.Authors.Single(a => a.Name == "与謝野晶子");
+                //var book1 = new Book
+                //{
+                //    Title = "みだれ髪",
+                //    PublishedYear = 2000,
+                //    Author = author1,
+                //};
+                //db.Books.Add(book1);
+                //var author2 = db.Authors.Single(a => a.Name == "宮沢賢治");
+                //var book2 = new Book
+                //{
+                //    Title = "銀河鉄道の夜",
+                //    PublishedYear = 1989,
+                //    Author = author2,
+                //};
+                //db.Books.Add(book2);
                 var author3 = db.Authors.Single(a => a.Name == "夏目漱石");
                 var book3 = new Book
                 {
