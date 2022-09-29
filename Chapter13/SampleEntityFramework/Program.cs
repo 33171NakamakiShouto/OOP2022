@@ -18,7 +18,14 @@ namespace SampleEntityFramework
             }
             Console.WriteLine("----------------------------");
 
-            
+            var MaxBook = GetMaxBooks();
+            foreach (var book in MaxBook)
+            {
+                Console.WriteLine($"{book.Title} {book.Author.Name} {book.PublishedYear}");
+            }
+            Console.WriteLine("----------------------------");
+
+           
 
             //var books = GetBooks();            
 
@@ -33,7 +40,7 @@ namespace SampleEntityFramework
             using (var db = new BooksDbContext())
             {
                 return db.Books
-                    .Include(nameof(Author))
+                    .Include(nameof(Author))                    
                     .ToList();
 
             }
@@ -45,6 +52,17 @@ namespace SampleEntityFramework
             {
                 return db.Books
                     .Where(book => book.Author.Name.StartsWith("夏目"));
+            }
+        }
+
+        static IEnumerable<Book> GetMaxBooks()
+        {
+            using (var db = new BooksDbContext())
+            {
+                return db.Books
+                    .Include(nameof(Author))
+                    .Where(a => a.Title.Length == db.Books.Max(x => x.Title.Length))                    
+                    .ToList();
             }
         }
 
