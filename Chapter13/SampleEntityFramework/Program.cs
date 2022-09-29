@@ -14,26 +14,34 @@ namespace SampleEntityFramework
             var books = GetAllBooks();
             foreach (var book in books)
             {
-                Console.WriteLine($"{book.Title}{book.PublishedYear}");
+                Console.WriteLine($"{book.Title} {book.Author.Name} {book.PublishedYear}");
             }
+            Console.WriteLine("----------------------------");
+
+            
+
+            //var books = GetBooks();            
 
             //InsertBooks();
             //AddAuthors();
             //AddBooks();
 
-        }        
+        }
 
         static IEnumerable<Book> GetAllBooks()
         {
             using (var db = new BooksDbContext())
             {
-                return db.Books.ToList();
+                return db.Books
+                    .Include(nameof(Author))
+                    .ToList();
+
             }
         }
 
         static IEnumerable<Book> GetBooks()
         {
-            using (var db= new BooksDbContext())
+            using (var db = new BooksDbContext())
             {
                 return db.Books
                     .Where(book => book.Author.Name.StartsWith("夏目"));
