@@ -72,7 +72,7 @@ namespace Chapter15
                            );
             foreach (var g in selected)
             {
-                Console.WriteLine($"出版年:{g.PublishedYear},タイトル:{g.Title},カテゴリ:{g.Category},　{g.price}円");                 
+                Console.WriteLine($"出版年:{g.PublishedYear},タイトル:{g.Title},カテゴリ:{g.Category},　{g.Price}円");                 
             }
             Console.WriteLine($"金額の合計{selected.Sum(s => s.Price)}");
         }
