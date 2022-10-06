@@ -42,20 +42,26 @@ namespace Exercise1
                 .GroupBy(b => b.PublishedYear)
                 .OrderBy(o => o.Key);
 
-            foreach (var k in books)
+            foreach (var o in books)
             {
-                Console.WriteLine($"{k.Key}年 {k.Count()}冊");
+                Console.WriteLine($"{o.Key}年 {o.Count()}冊");
             }
         }
 
         private static void Exercise1_4()
         {
-
+            var books = Library.Books
+                .OrderByDescending(b => b.Price)
+                .OrderByDescending(o => o.PublishedYear);
+            foreach (var o in books)
+            {
+                Console.WriteLine(o);
+            }
         }
 
         private static void Exercise1_5()
         {
-
+            
         }
 
         private static void Exercise1_6()
