@@ -57,6 +57,7 @@ namespace Chapter15
             Console.WriteLine();
 
             var selected = Library.Books
+                          .Where(b => years.Contains(b.PublishedYear))
                           .OrderByDescending(b => b.PublishedYear)
                           .ThenBy(b => b.CategoryId)
                           .Join(Library.Categories,//結合する2番目のシーケンス

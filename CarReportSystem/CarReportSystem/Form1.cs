@@ -20,6 +20,7 @@ namespace CarReportSystem
     {
 
         Settings settings = Settings.getInstance();
+        private BindingList<CarReport> listCarReport;
 
         public Form1()
         {
