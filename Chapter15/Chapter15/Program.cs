@@ -66,13 +66,15 @@ namespace Chapter15
                                 {
                                     Title = book.Title,
                                     Category = category.Name,
-                                    PublishedYear = book.PublishedYear
+                                    PublishedYear = book.PublishedYear,
+                                    Price = book.Price,
                                 }
                            );
             foreach (var g in selected)
             {
-                Console.WriteLine($"出版年:{g.PublishedYear},タイトル:{g.Title},カテゴリ:{g.Category}");               
+                Console.WriteLine($"出版年:{g.PublishedYear},タイトル:{g.Title},カテゴリ:{g.Category},　{g.price}円");                 
             }
+            Console.WriteLine($"金額の合計{selected.Sum(s => s.Price)}");
         }
     }
 }

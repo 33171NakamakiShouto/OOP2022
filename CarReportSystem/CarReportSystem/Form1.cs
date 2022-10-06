@@ -21,9 +21,6 @@ namespace CarReportSystem
 
         Settings settings = Settings.getInstance();
 
-
-        BindingList<CarReport> listCarReport = new BindingList<CarReport>();
-
         public Form1()
         {
             InitializeComponent();
