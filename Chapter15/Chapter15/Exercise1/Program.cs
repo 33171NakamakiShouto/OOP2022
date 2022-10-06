@@ -32,18 +32,19 @@ namespace Exercise1
         {
             var books = Library.Books;
 
-            if (books.Max(m => m.Price) == )
+            foreach (var m in books)
             {
-                foreach (var m in books)
+                if (books.Max(a=>a.Price)== m.Price)
                 {
                     Console.WriteLine(m);
                 }
             }
-            
+
         }
 
         private static void Exercise1_3()
         {
+            
 
         }
 
