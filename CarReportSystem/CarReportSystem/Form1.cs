@@ -26,9 +26,7 @@ namespace CarReportSystem
 
         public Form1()
         {
-            InitializeComponent();
-            dgvTdrms.DataSource = listCarReport;
-            
+            InitializeComponent();           
         }
 
         //エラー回避
@@ -153,28 +151,6 @@ namespace CarReportSystem
             this.carReportDBBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202216DataSet);
 
-        }
-
-        //データグリッドビューをクリックした時のイベントハンドラ
-        private void dgvTdrms_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        //    if (dgvTdrms.CurrentRow == null) return;
-
-        //    int index = dgvTdrms.CurrentRow.Index;
-
-        //    cbRecorder.Text = listCarReport[index].Recorder;
-        //    cbCarName.Text = listCarReport[index].CarName;
-        //    tbReport.Text = listCarReport[index].Report;
-        //    tbReport.Text = listCarReport[index].Report;
-        //    pbPicture.Image = listCarReport[index].Picture;
-
-        //    dtpRegistDate.Value = listCarReport[index].Registration.Year > 1900 ?
-        //        listCarReport[index].Registration : DateTime.Today;
-
-
-
-        //    grouoMakerTypeAllClear();
-        //    GetMakerGroup();
         }
 
         private void grouoMakerTypeAllUpdate()
