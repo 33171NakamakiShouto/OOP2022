@@ -76,17 +76,61 @@ namespace Exercise1
 
         private static void Exercise1_6()
         {
-           
+            var books = Library.Books
+                 .Join(Library.Categories,
+                         book => book.CategoryId,
+                         category => category.Id,
+                         (book, category) => new
+                         {
+                            Category = category.Name,
+                            Title = book.Title
+                         })
+
+                 .GroupBy(b => b.Category)
+                 .OrderBy(o => o.Key);
+            foreach (var o in books)
+            {
+                Console.WriteLine(o.Key);
+                foreach (var k in o)
+                {
+                    Console.WriteLine($"    {k.Title}");
+                }
+            }
         }
 
         private static void Exercise1_7()
         {
-
+            var books = Library.Books
+                .Where(b => b.CategoryId == 1)
+                .GroupBy(b => b.PublishedYear)
+                .OrderBy(o => o.Key);
+            foreach (var book in books)
+            {
+                Console.WriteLine($"#{book.Key}");
+                foreach (var bok in book)
+                {
+                    Console.WriteLine($"    {bok}");
+                }
+            }
         }
 
         private static void Exercise1_8()
         {
+            var books = Library.Categories
+                .GroupJoin(Library.Books,
+                    c => c.Id,
+                    b => b.CategoryId,
+                    (c, b) => new
+                    {
+                        Category = c.Name,
+                        Count = b.Count()
+                    });
+            foreach (var book in books.Where(b=> b.Count >= 4))
+            {
+                Console.WriteLine(book.Category);
 
+            }
+             
         }
     }
 }
