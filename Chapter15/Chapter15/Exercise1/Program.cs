@@ -38,7 +38,14 @@ namespace Exercise1
 
         private static void Exercise1_3()
         {
+            var books = Library.Books
+                .GroupBy(b => b.PublishedYear)
+                .OrderBy(o => o.Key);
 
+            foreach (var k in books)
+            {
+                Console.WriteLine($"{k.Key}年 {k.Count()}冊");
+            }
         }
 
         private static void Exercise1_4()
