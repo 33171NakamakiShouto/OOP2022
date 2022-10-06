@@ -30,21 +30,14 @@ namespace Exercise1
 
         private static void Exercise1_2()
         {
-            var books = Library.Books;
-
-            foreach (var m in books)
-            {
-                if (books.Max(a=>a.Price)== m.Price)
-                {
-                    Console.WriteLine(m);
-                }
-            }
+            var max = Library.Books.Max(b=>b.Price);
+            var books = Library.Books.First(o => o.Price == max);
+            Console.WriteLine(books);
 
         }
 
         private static void Exercise1_3()
         {
-            
 
         }
 
