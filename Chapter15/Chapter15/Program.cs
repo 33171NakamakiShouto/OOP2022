@@ -39,11 +39,11 @@ namespace Chapter15
             var order = int.Parse(Console.ReadLine());
 
             if (order == 1)
-            {                                            
+            {
                 foreach (var book in books.OrderBy(b => b.PublishedYear))
                 {
                     Console.WriteLine(book);
-                }                
+                }
             }
             else if (order == 2)
             {
@@ -56,14 +56,22 @@ namespace Chapter15
 
             Console.WriteLine();
 
-            foreach (var g in books.GroupBy(b => b.PublishedYear).OrderBy(g => g.Key))
+            var selected = Library.Books
+                          .OrderByDescending(b => b.PublishedYear)
+                          .ThenBy(b => b.CategoryId)
+                          .Join(Library.Categories,//結合する2番目のシーケンス
+                                book => book.CategoryId,//対象シーケンスの結合キー
+                                category => category.Id,//2番目のシーケンスの結合キー
+                                (book, category) => new
+                                {
+                                    Title = book.Title,
+                                    Category = category.Name,
+                                    PublishedYear = book.PublishedYear
+                                }
+                           );
+            foreach (var g in selected)
             {
-                Console.WriteLine($"{g.Key}年");
-                foreach (var book in g)
-                {
-                    var category = Library.Categories.Where(b => b.Id == book.CategoryId).First();
-                    Console.WriteLine($"    タイトル:{book.Title},価格:{book.Price},カテゴリ:{category.Name}");
-                }
+                Console.WriteLine($"出版年:{g.PublishedYear},タイトル:{g.Title},カテゴリ:{g.Category}");               
             }
         }
     }
