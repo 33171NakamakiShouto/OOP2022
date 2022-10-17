@@ -23,6 +23,36 @@ namespace SampleApplication
         public MainWindow()
         {
             InitializeComponent();
+            seasonComboBox.SelectedIndex = getSeasonIndex();
+        }
+
+        private int getSeasonIndex()
+        {
+            var season = DateTime.Now;
+            var select = 0;
+            switch (season.Month)
+            {
+                case 3:
+                case 4:
+                case 5:
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    select = 1;
+                    break;
+                case 9:
+                case 10:
+                case 11:
+                    select = 2;
+                    break;
+                case 12:
+                case 1:
+                case 2:
+                    select = 3;
+                    break;            
+            }
+            return select;
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)

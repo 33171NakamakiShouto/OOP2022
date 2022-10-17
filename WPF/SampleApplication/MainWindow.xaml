@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:SampleApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="300">
-    <Grid>
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.999"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -47,6 +55,6 @@
             <ComboBoxItem Content="秋"/>
             <ComboBoxItem Content="冬"/>
         </ComboBox>
-        <TextBlock Name="seasonTextBlock" Grid.Row="3" Grid.Column="2"/> 
+        <TextBlock Name="seasonTextBlock" Grid.Row="3" Grid.Column="2"/>
     </Grid>
 </Window>
