@@ -19,8 +19,10 @@ namespace NumberGeme
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window
-    {
-        int random = new Random().Next(1, 25);
+    {        
+        Random random = new Random();
+
+        private int correctNumber;//正解ナンバー
 
         public MainWindow()
         {
@@ -31,25 +33,26 @@ namespace NumberGeme
         {
             Button bt = (Button)sender;
 
-            var num = Convert.ToInt32(bt);
-
-
-            if (random == num)
+            if (correctNumber.ToString() == (string)bt.Content)
             {
-                パパイヤ.Text = "wow With flying colors!";
+                infoDisp.Text = "wow With flying colors!";
+                bt.Background = Brushes.Gold;
             }
-            else if (random < num)
+            else
             {
-                パパイヤ.Text = "大きいな～";
-            }
-            else if (random > num)
-            {
-                パパイヤ.Text = "小さいな～";
-            }
+                infoDisp.Text
+                    = int.Parse((string)bt.Content) < correctNumber
+                                    ? "大きいな～" : "小さいな～";
+                bt.Background
+                    = int.Parse((string)bt.Content) < correctNumber
+                                    ? Brushes.Blue : Brushes.Red; ;
+            }           
         } 
-        private void getRandom()
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            new Random().Next(1, 25);
+            infoDisp.Text = "ゲームスタート";
+            correctNumber = random.Next(25) + 1;//正解ナンバーを設定
+            //this.Title = correctNumber.ToString();//デバック用
         }
     }
 }

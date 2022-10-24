@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NumberGeme"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" Height="450" Width="400" Loaded="Window_Loaded">
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -48,6 +48,6 @@
             <Button Grid.Column="3" Grid.Row="4" Width="80" Height="80" Content="24" Click="Button_Click"/>
             <Button Grid.Column="4" Grid.Row="4" Width="80" Height="80" Content="25" Click="Button_Click"/>
         </Grid>
-        <TextBlock x:Name="パパイヤ" Background="Aqua"/>
+        <TextBlock x:Name="infoDisp" Background="Aqua"/>
     </StackPanel>
 </Window>
