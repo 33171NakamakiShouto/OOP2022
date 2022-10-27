@@ -14,11 +14,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Background="AliceBlue" />
+        <Label x:Name="ColorLabel" Grid.Row="1" Background="White" />
         <Grid Grid.Row="1" Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="190"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -31,13 +31,26 @@
             <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Text="R" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Text="G" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Text="B" VerticalAlignment="Center"/>
-            <Slider x:Name="R_Slider" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255"/>
-            <Slider x:Name="G_Slider" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255"/>
-            <Slider x:Name="B_Slider" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Maximum="255"/>
-            <TextBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=R_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=G_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=B_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
+            <Slider x:Name="R_Slider" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Maximum="255" ValueChanged="R_Slider_ValueChanged"/>
+            <Slider x:Name="G_Slider" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Maximum="255" ValueChanged="G_Slider_ValueChanged"/>
+            <Slider x:Name="B_Slider" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Maximum="255" ValueChanged="B_Slider_ValueChanged"/>
+            <TextBox x:Name="R_TextBox" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=R_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="G_TextBox" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=G_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="B_TextBox" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=B_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,30,3,3" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="155" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black" Loaded="Border_Loaded"  >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </Grid>
     </Grid>
-
 </Window>
