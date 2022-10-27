@@ -79,6 +79,27 @@ namespace CollerChecker
         {
 
         }
+
+        private void ColorLabel_Loaded(object sender, RoutedEventArgs e)
+        {
+            GetColor();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var saveColors = "R:"+ R_TextBox.Text + " G:" +G_TextBox.Text + " B:" +B_TextBox.Text;
+            colorInfo.Items.Add(saveColors);
+        }
+
+        private void colorInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var colors = colorInfo.SelectedItem;
+            string[] color = colors.ToString().Split(' ');
+
+            R_TextBox.Text = color[0].Substring(2);
+            G_TextBox.Text = color[1].Substring(2);
+            B_TextBox.Text = color[2].Substring(2);
+        }
     }
 
     public class MyColor
