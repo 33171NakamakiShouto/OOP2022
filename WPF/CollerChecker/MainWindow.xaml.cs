@@ -21,6 +21,7 @@ namespace CollerChecker
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
@@ -61,18 +62,21 @@ namespace CollerChecker
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = mycolor.Color;
-            var name = mycolor.Name;
+            if (mycolor != null)
+            {
+                var color = mycolor.Color;
+                var name = mycolor.Name;
 
-            ColorLabel.Background = new SolidColorBrush(color);
+                ColorLabel.Background = new SolidColorBrush(color);
 
-            var R = color.R;
-            var G = color.G;
-            var B = color.B;
+                var R = color.R;
+                var G = color.G;
+                var B = color.B;
 
-            R_Slider.Value = R;
-            G_Slider.Value = G;
-            B_Slider.Value = B;
+                R_Slider.Value = R;
+                G_Slider.Value = G;
+                B_Slider.Value = B;
+            }    
         }
 
         private void Border_Loaded(object sender, RoutedEventArgs e)
@@ -87,18 +91,52 @@ namespace CollerChecker
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var saveColors = "R:"+ R_TextBox.Text + " G:" +G_TextBox.Text + " B:" +B_TextBox.Text;
-            colorInfo.Items.Add(saveColors);
+            MyColor stColor = new MyColor();
+            var r = byte.Parse(R_TextBox.Text);
+            var g = byte.Parse(G_TextBox.Text);
+            var b = byte.Parse(B_TextBox.Text);
+            stColor.Color = Color.FromRgb(r,g,b);
+
+            var colorName = ((IEnumerable<MyColor>)DataContext)
+                                            .Where(c => c.Color.R == stColor.Color.R &&
+                                                        c.Color.G == stColor.Color.G &&
+                                                        c.Color.B == stColor.Color.B).FirstOrDefault();
+
+            colorInfo.Items.Add(colorName?.Name?? "R:" + R_TextBox.Text + " G:" + G_TextBox.Text + " B:" + B_TextBox.Text);
+
+            //if (colorName != null)
+            //{
+            //    colorInfo.Items.Add(colorName.Name);
+            //}
+            //else
+            //{
+            //    colorInfo.Items.Add("R:" + R_TextBox.Text + " G:" + G_TextBox.Text + " B:" + B_TextBox.Text);
+            //}
+            //colorInfo.Items.Add(stColor);  
         }
 
         private void colorInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var colors = colorInfo.SelectedItem;
-            string[] color = colors.ToString().Split(' ');
+            
 
-            R_TextBox.Text = color[0].Substring(2);
-            G_TextBox.Text = color[1].Substring(2);
-            B_TextBox.Text = color[2].Substring(2);
+            //var colors = colorInfo.SelectedItem;
+            
+            //if (colors != null)
+            //{
+            //    string[] color = colors.ToString().Split(' ');
+            //    R_TextBox.Text = color[0].Substring(2);
+            //    G_TextBox.Text = color[1].Substring(2);
+            //    B_TextBox.Text = color[2].Substring(2);
+            //}
+            //delete.IsEnabled = true;
+
+            //R_Slider.Value = [colorInfo.SelectedIndex].
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            colorInfo.Items.Remove(colorInfo.SelectedItem);
+            delete.IsEnabled = false;
         }
     }
 
