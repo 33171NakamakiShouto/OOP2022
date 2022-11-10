@@ -21,7 +21,7 @@ namespace CollerChecker
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        List<MyColor> colorList = new List<MyColor>();
         public MainWindow()
         {
             InitializeComponent();
@@ -61,22 +61,28 @@ namespace CollerChecker
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
-            if (mycolor != null)
-            {
-                var color = mycolor.Color;
-                var name = mycolor.Name;
+            //var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            //if (mycolor != null)
+            //{
+            //    var color = mycolor.Color;
+            //    var name = mycolor.Name;
 
-                ColorLabel.Background = new SolidColorBrush(color);
+            //    ColorLabel.Background = new SolidColorBrush(color);
 
-                var R = color.R;
-                var G = color.G;
-                var B = color.B;
+            //    var R = color.R;
+            //    var G = color.G;
+            //    var B = color.B;
 
-                R_Slider.Value = R;
-                G_Slider.Value = G;
-                B_Slider.Value = B;
-            }    
+            //    R_Slider.Value = R;
+            //    G_Slider.Value = G;
+            //    B_Slider.Value = B;
+            //}
+            //
+            R_Slider.Value = ((MyColor)((ComboBox)sender).SelectedItem).Color.R;
+            G_Slider.Value = ((MyColor)((ComboBox)sender).SelectedItem).Color.G;
+            B_Slider.Value = ((MyColor)((ComboBox)sender).SelectedItem).Color.B;
+            GetColor();
+
         }
 
         private void Border_Loaded(object sender, RoutedEventArgs e)
@@ -102,7 +108,8 @@ namespace CollerChecker
                                                         c.Color.G == stColor.Color.G &&
                                                         c.Color.B == stColor.Color.B).FirstOrDefault();
 
-            colorInfo.Items.Add(colorName?.Name?? "R:" + R_TextBox.Text + " G:" + G_TextBox.Text + " B:" + B_TextBox.Text);
+            colorInfo.Items.Insert(0,colorName?.Name?? "R:" + r + " G:" + g + " B:" + b);
+            colorList.Insert(0, stColor);
 
             //if (colorName != null)
             //{
@@ -117,25 +124,23 @@ namespace CollerChecker
 
         private void colorInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if (colorInfo.SelectedIndex == -1) return;
 
-            //var colors = colorInfo.SelectedItem;
-            
-            //if (colors != null)
-            //{
-            //    string[] color = colors.ToString().Split(' ');
-            //    R_TextBox.Text = color[0].Substring(2);
-            //    G_TextBox.Text = color[1].Substring(2);
-            //    B_TextBox.Text = color[2].Substring(2);
-            //}
-            //delete.IsEnabled = true;
-
-            //R_Slider.Value = [colorInfo.SelectedIndex].
+            R_Slider.Value = colorList[colorInfo.SelectedIndex].Color.R;
+            G_Slider.Value = colorList[colorInfo.SelectedIndex].Color.G;
+            B_Slider.Value = colorList[colorInfo.SelectedIndex].Color.B;
+            GetColor();
+            delete.IsEnabled = true;
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
-            colorInfo.Items.Remove(colorInfo.SelectedItem);
+            var delIndex = colorInfo.SelectedIndex;
+
+            if (delIndex == -1) return;
+
+            colorInfo.Items.RemoveAt(delIndex);
+            colorList.RemoveAt(delIndex);
             delete.IsEnabled = false;
         }
     }
