@@ -49,6 +49,7 @@ namespace WeatherApp2
             // 
             this.pbAreaCode.BackColor = System.Drawing.Color.Transparent;
             this.pbAreaCode.ErrorImage = null;
+            this.pbAreaCode.ImageLocation = "";
             this.pbAreaCode.Location = new System.Drawing.Point(12, 12);
             this.pbAreaCode.Name = "pbAreaCode";
             this.pbAreaCode.Size = new System.Drawing.Size(482, 508);
@@ -124,6 +125,7 @@ namespace WeatherApp2
             // 
             // cbAreaCode
             // 
+            this.cbAreaCode.BackColor = System.Drawing.Color.White;
             this.cbAreaCode.Font = new System.Drawing.Font("ＭＳ 明朝", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbAreaCode.FormattingEnabled = true;
             this.cbAreaCode.Location = new System.Drawing.Point(500, 229);
@@ -135,8 +137,8 @@ namespace WeatherApp2
             // pbToday
             // 
             this.pbToday.BackColor = System.Drawing.Color.Transparent;
-            this.pbToday.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pbToday.ErrorImage")));
-            this.pbToday.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbToday.InitialImage")));
+            this.pbToday.ErrorImage = null;
+            this.pbToday.InitialImage = null;
             this.pbToday.Location = new System.Drawing.Point(500, 12);
             this.pbToday.Name = "pbToday";
             this.pbToday.Size = new System.Drawing.Size(144, 134);
@@ -148,6 +150,7 @@ namespace WeatherApp2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(956, 532);
             this.Controls.Add(this.cbAreaCode);

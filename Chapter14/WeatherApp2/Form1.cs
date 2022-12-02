@@ -56,7 +56,7 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("胆振・日高地方");
                     lbAreaCode.Items.Add("石狩・空知・後志地方");
                     lbAreaCode.Items.Add("渡島・檜山地方");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\北海道.png";
+                    pbAreaCode.ImageLocation = @"Images\北海道.png";
                     break;
                 case "東北地方":
                     lbAreaCode.Items.Add("青森県");
@@ -65,7 +65,7 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("秋田県");
                     lbAreaCode.Items.Add("山形県");
                     lbAreaCode.Items.Add("福島県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\東北.png";
+                    pbAreaCode.ImageLocation = @"Images\東北.png";
                     break;
                 case "関東甲信地方":
                     lbAreaCode.Items.Add("茨城県");
@@ -77,21 +77,21 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("神奈川県");
                     lbAreaCode.Items.Add("山梨県");
                     lbAreaCode.Items.Add("長野県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\関東甲信.png";
+                    pbAreaCode.ImageLocation = @"Images\関東甲信.png";
                     break;
                 case "東海地方":
                     lbAreaCode.Items.Add("岐阜県");
                     lbAreaCode.Items.Add("静岡県");
                     lbAreaCode.Items.Add("愛知県");
                     lbAreaCode.Items.Add("三重県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\東海2.png";
+                    pbAreaCode.ImageLocation = @"Images\東海2.png";
                     break;
                 case "北陸地方":
                     lbAreaCode.Items.Add("新潟県");
                     lbAreaCode.Items.Add("富山県");
                     lbAreaCode.Items.Add("石川県");
                     lbAreaCode.Items.Add("福井県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\北陸.png";
+                    pbAreaCode.ImageLocation = @"Images\北陸.png";
                     break;
                 case "近畿地方":
                     lbAreaCode.Items.Add("滋賀県");
@@ -100,21 +100,21 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("兵庫県");
                     lbAreaCode.Items.Add("奈良県");
                     lbAreaCode.Items.Add("和歌山県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\近畿.png";
+                    pbAreaCode.ImageLocation = @"Images\近畿.png";
                     break;
                 case "中国地方（山口県を除く）":
                     lbAreaCode.Items.Add("鳥取県");
                     lbAreaCode.Items.Add("島根県");
                     lbAreaCode.Items.Add("岡山県");
                     lbAreaCode.Items.Add("広島県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\中国7.png";
+                    pbAreaCode.ImageLocation = @"Images\中国7.png";
                     break;
                 case "四国地方":
                     lbAreaCode.Items.Add("徳島県");
                     lbAreaCode.Items.Add("香川県");
                     lbAreaCode.Items.Add("愛媛県");
                     lbAreaCode.Items.Add("高知県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\四国.png";
+                    pbAreaCode.ImageLocation = @"Images\四国.png";
                     break;
                 case "九州北部地方（山口県を含む）":
                     lbAreaCode.Items.Add("山口県");
@@ -123,20 +123,20 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("長崎県");
                     lbAreaCode.Items.Add("熊本県");
                     lbAreaCode.Items.Add("大分県");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\九州北部.png";
+                    pbAreaCode.ImageLocation = @"Images\九州北部.png";
                     break;
                 case "九州南部・奄美地方":
                     lbAreaCode.Items.Add("宮崎県");
                     lbAreaCode.Items.Add("奄美地方");
                     lbAreaCode.Items.Add("鹿児島県（奄美地方除く）");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\九州南部3.png";
+                    pbAreaCode.ImageLocation = @"Images\九州南部3.png";
                     break;
                 case "沖縄地方":
                     lbAreaCode.Items.Add("沖縄本島地方");
                     lbAreaCode.Items.Add("大東島地方");
                     lbAreaCode.Items.Add("宮古島地方");
                     lbAreaCode.Items.Add("八重山地方");
-                    pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\沖縄.png";
+                    pbAreaCode.ImageLocation = @"Images\沖縄.png";
                     break;
             }
         }
@@ -148,7 +148,7 @@ namespace WeatherApp2
             if (lbAreaCode.SelectedItem.ToString() == "宗谷地方") { AreaCode = "011000";}
             if (lbAreaCode.SelectedItem.ToString() == "上川・留萌地方") { AreaCode = "012000"; }
             if (lbAreaCode.SelectedItem.ToString() == "網走・北見・紋別地方") { AreaCode = "013000"; }
-            if (lbAreaCode.SelectedItem.ToString() == "十勝地方") { AreaCode = "014030"; return; }
+            if (lbAreaCode.SelectedItem.ToString() == "十勝地方") { AreaCode = "014030";}
             if (lbAreaCode.SelectedItem.ToString() == "釧路・根室地方") { AreaCode = "014100"; }
             if (lbAreaCode.SelectedItem.ToString() == "胆振・日高地方") { AreaCode = "015000"; }
             if (lbAreaCode.SelectedItem.ToString() == "石狩・空知・後志地方") { AreaCode = "016000"; }
@@ -156,245 +156,245 @@ namespace WeatherApp2
             if (lbAreaCode.SelectedItem.ToString() == "青森県")
             {
                 AreaCode = "020000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\青森6.png"; 
+                pbAreaCode.ImageLocation = @"Images\青森6.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "岩手県")
             {
                 AreaCode = "030000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\岩手3.png"; 
+                pbAreaCode.ImageLocation = @"Images\岩手3.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "宮城県")
             {
                 AreaCode = "040000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\宮城2.png"; 
+                pbAreaCode.ImageLocation = @"Images\宮城2.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "秋田県")
             {
                 AreaCode = "050000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\秋田.png"; 
+                pbAreaCode.ImageLocation = @"Images\秋田.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "山形県")
             {
                 AreaCode = "060000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\山形.png"; 
+                pbAreaCode.ImageLocation = @"Images\山形.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "福島県")
             {
                 AreaCode = "070000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\福島.png"; 
+                pbAreaCode.ImageLocation = @"Images\福島.png"; 
             }
             //関東甲信　幅1977　高さ2148
             if (lbAreaCode.SelectedItem.ToString() == "茨城県")
             {
                 AreaCode = "080000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\茨城.png"; 
+                pbAreaCode.ImageLocation = @"Images\茨城.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "栃木県")
             {
                 AreaCode = "090000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\栃木.png";
+                pbAreaCode.ImageLocation = @"Images\栃木.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "群馬県")
             {
                 AreaCode = "100000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\群馬.png";
+                pbAreaCode.ImageLocation = @"Images\群馬.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "埼玉県")
             {
                 AreaCode = "110000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\埼玉.png";
+                pbAreaCode.ImageLocation = @"Images\埼玉.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "千葉県")
             {
                 AreaCode = "120000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\千葉.png";
+                pbAreaCode.ImageLocation = @"Images\千葉.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "東京都")
             {
                 AreaCode = "130000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\東京.png";
+                pbAreaCode.ImageLocation = @"Images\東京.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "神奈川県")
             {
                 AreaCode = "140000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\神奈川.png";
+                pbAreaCode.ImageLocation = @"Images\神奈川.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "山梨県")
             {
                 AreaCode = "190000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\山梨.png";
+                pbAreaCode.ImageLocation = @"Images\山梨.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "長野県")
             {
                 AreaCode = "200000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\長野.png";
+                pbAreaCode.ImageLocation = @"Images\長野.png";
             }
             //東海地方  幅1977　高さ2148
             if (lbAreaCode.SelectedItem.ToString() == "岐阜県")
             {
                 AreaCode = "210000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\岐阜2.png";
+                pbAreaCode.ImageLocation = @"Images\岐阜2.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "静岡県")
             {
                 AreaCode = "220000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\静岡2.png";
+                pbAreaCode.ImageLocation = @"Images\静岡2.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "愛知県")
             {
                 AreaCode = "230000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\愛知3.png";
+                pbAreaCode.ImageLocation = @"Images\愛知3.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "三重県")
             {
                 AreaCode = "240000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\三重.png";
+                pbAreaCode.ImageLocation = @"Images\三重.png";
             }
             //北陸地方  幅2091　高さ2148
             if (lbAreaCode.SelectedItem.ToString() == "新潟県")
             {
                 AreaCode = "150000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\新潟.png";
+                pbAreaCode.ImageLocation = @"Images\新潟.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "富山県")
             {
                 AreaCode = "160000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\富山.png";
+                pbAreaCode.ImageLocation = @"Images\富山.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "石川県")
             {
                 AreaCode = "170000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\石川.png";
+                pbAreaCode.ImageLocation = @"Images\石川.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "福井県")
             {
                 AreaCode = "180000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\福井.png";
+                pbAreaCode.ImageLocation = @"Images\福井.png";
             }
             //近畿地方  幅2091　高さ2148
             if (lbAreaCode.SelectedItem.ToString() == "滋賀県")
             {
                 AreaCode = "250000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\滋賀.png";
+                pbAreaCode.ImageLocation = @"Images\滋賀.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "京都府")
             {
                 AreaCode = "260000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\京都.png";
+                pbAreaCode.ImageLocation = @"Images\京都.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "大阪府")
             {
                 AreaCode = "270000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\大阪.png";
+                pbAreaCode.ImageLocation = @"Images\大阪.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "兵庫県")
             {
                 AreaCode = "280000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\兵庫.png";
+                pbAreaCode.ImageLocation = @"Images\兵庫.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "奈良県")
             {
                 AreaCode = "290000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\奈良.png";
+                pbAreaCode.ImageLocation = @"Images\奈良.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "和歌山県")
             {
                 AreaCode = "300000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\和歌山.png";
+                pbAreaCode.ImageLocation = @"Images\和歌山.png";
             }
             //中国地方（山口県を除く）  幅1747　高さ1632
             if (lbAreaCode.SelectedItem.ToString() == "鳥取県")
             {
                 AreaCode = "310000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\鳥取.png";
+                pbAreaCode.ImageLocation = @"Images\鳥取.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "島根県")
             {
                 AreaCode = "320000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\島根.png";
+                pbAreaCode.ImageLocation = @"Images\島根.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "岡山県")
             {
                 AreaCode = "330000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\岡山.png";
+                pbAreaCode.ImageLocation = @"Images\岡山.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "広島県")
             {
                 AreaCode = "340000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\広島.png";
+                pbAreaCode.ImageLocation = @"Images\広島.png";
             }
             //四国地方
             if (lbAreaCode.SelectedItem.ToString() == "徳島県")
             {
                 AreaCode = "360000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\徳島.png";
+                pbAreaCode.ImageLocation = @"Images\徳島.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "香川県")
             {
                 AreaCode = "370000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\香川.png";
+                pbAreaCode.ImageLocation = @"Images\香川.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "愛媛県")
             {
                 AreaCode = "380000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\愛媛.png";
+                pbAreaCode.ImageLocation = @"Images\愛媛.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "高知県")
             {
                 AreaCode = "390000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\高知.png";
+                pbAreaCode.ImageLocation = @"Images\高知.png";
             }
             //九州北部地方（山口県を含む）
             if (lbAreaCode.SelectedItem.ToString() == "山口県")
             {
                 AreaCode = "350000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\山口.png";
+                pbAreaCode.ImageLocation = @"Images\山口.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "福岡県")
             {
                 AreaCode = "400000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\福岡.png";
+                pbAreaCode.ImageLocation = @"Images\福岡.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "佐賀県")
             {
                 AreaCode = "410000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\佐賀.png";
+                pbAreaCode.ImageLocation = @"Images\佐賀.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "長崎県")
             {
                 AreaCode = "420000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\長崎.png";
+                pbAreaCode.ImageLocation = @"Images\長崎.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "熊本県")
             {
                 AreaCode = "430000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\熊本.png";
+                pbAreaCode.ImageLocation = @"Images\熊本.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "大分県")
             {
                 AreaCode = "440000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\大分.png";
+                pbAreaCode.ImageLocation = @"Images\大分.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "宮崎県")
             {
                 AreaCode = "450000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\宮崎2.png"; 
+                pbAreaCode.ImageLocation = @"Images\宮崎2.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "奄美地方")
             {
                 AreaCode = "460040";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\九州南部3.png";
+                pbAreaCode.ImageLocation = @"Images\九州南部3.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "鹿児島県（奄美地方除く）")
             {
                 AreaCode = "460100";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\鹿児島2.png";
+                pbAreaCode.ImageLocation = @"Images\鹿児島2.png";
             }
             //沖縄地方
             if (lbAreaCode.SelectedItem.ToString() == "沖縄本島地方")
             {
                 AreaCode = "471000";
-                pbAreaCode.ImageLocation = @"C:\Users\infosys\Downloads\沖縄.png";
+                pbAreaCode.ImageLocation = @"Images\沖縄.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "大東島地方") { AreaCode = "472000";}
             if (lbAreaCode.SelectedItem.ToString() == "宮古島地方") { AreaCode = "473000";}
@@ -420,7 +420,7 @@ namespace WeatherApp2
                     {
                         if (Changing == WeatherCode)
                         {
-                            pbToday.ImageLocation = @"C:\Users\infosys\Downloads\🥺.png";
+                            pbToday.ImageLocation = @"Images\🥺.png";
                             check = 1;
                             break;
                         }
@@ -437,7 +437,7 @@ namespace WeatherApp2
                     {
                         if (Changing == WeatherCode)
                         {
-                            pbTomorrow.ImageLocation = @"C:\Users\infosys\Downloads\🥺.png";
+                            pbTomorrow.ImageLocation = @"Images\🥺.png";
                             check = 1;
                             break;
                         }
@@ -454,7 +454,7 @@ namespace WeatherApp2
                     {
                         if (Changing == WeatherCode)
                         {
-                            pbDayAfterTomorrow.ImageLocation = @"C:\Users\infosys\Downloads\🥺.png";
+                            pbDayAfterTomorrow.ImageLocation = @"Images\🥺.png";
                             check = 1;
                             break;
                         }
