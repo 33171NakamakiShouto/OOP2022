@@ -48,28 +48,33 @@ namespace WeatherApp2
             // pbAreaCode
             // 
             this.pbAreaCode.BackColor = System.Drawing.Color.Transparent;
-            this.pbAreaCode.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pbAreaCode.ErrorImage")));
+            this.pbAreaCode.ErrorImage = null;
             this.pbAreaCode.Location = new System.Drawing.Point(12, 12);
             this.pbAreaCode.Name = "pbAreaCode";
             this.pbAreaCode.Size = new System.Drawing.Size(482, 508);
+            this.pbAreaCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAreaCode.TabIndex = 0;
             this.pbAreaCode.TabStop = false;
             // 
             // pbDayAfterTomorrow
             // 
             this.pbDayAfterTomorrow.BackColor = System.Drawing.Color.Transparent;
+            this.pbDayAfterTomorrow.ErrorImage = null;
             this.pbDayAfterTomorrow.Location = new System.Drawing.Point(800, 12);
             this.pbDayAfterTomorrow.Name = "pbDayAfterTomorrow";
             this.pbDayAfterTomorrow.Size = new System.Drawing.Size(144, 134);
+            this.pbDayAfterTomorrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbDayAfterTomorrow.TabIndex = 2;
             this.pbDayAfterTomorrow.TabStop = false;
             // 
             // pbTomorrow
             // 
             this.pbTomorrow.BackColor = System.Drawing.Color.Transparent;
+            this.pbTomorrow.ErrorImage = null;
             this.pbTomorrow.Location = new System.Drawing.Point(650, 12);
             this.pbTomorrow.Name = "pbTomorrow";
             this.pbTomorrow.Size = new System.Drawing.Size(144, 134);
+            this.pbTomorrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbTomorrow.TabIndex = 4;
             this.pbTomorrow.TabStop = false;
             // 
@@ -130,9 +135,12 @@ namespace WeatherApp2
             // pbToday
             // 
             this.pbToday.BackColor = System.Drawing.Color.Transparent;
+            this.pbToday.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pbToday.ErrorImage")));
+            this.pbToday.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbToday.InitialImage")));
             this.pbToday.Location = new System.Drawing.Point(500, 12);
             this.pbToday.Name = "pbToday";
             this.pbToday.Size = new System.Drawing.Size(144, 134);
+            this.pbToday.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbToday.TabIndex = 3;
             this.pbToday.TabStop = false;
             // 
