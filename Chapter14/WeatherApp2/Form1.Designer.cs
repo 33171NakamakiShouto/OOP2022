@@ -39,6 +39,7 @@ namespace WeatherApp2
             this.lbAreaCode = new System.Windows.Forms.ListBox();
             this.cbAreaCode = new System.Windows.Forms.ComboBox();
             this.pbToday = new System.Windows.Forms.PictureBox();
+            this.btClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbAreaCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDayAfterTomorrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTomorrow)).BeginInit();
@@ -49,6 +50,7 @@ namespace WeatherApp2
             // 
             this.pbAreaCode.BackColor = System.Drawing.Color.Transparent;
             this.pbAreaCode.ErrorImage = null;
+            this.pbAreaCode.Image = ((System.Drawing.Image)(resources.GetObject("pbAreaCode.Image")));
             this.pbAreaCode.ImageLocation = "";
             this.pbAreaCode.Location = new System.Drawing.Point(12, 12);
             this.pbAreaCode.Name = "pbAreaCode";
@@ -61,6 +63,7 @@ namespace WeatherApp2
             // 
             this.pbDayAfterTomorrow.BackColor = System.Drawing.Color.Transparent;
             this.pbDayAfterTomorrow.ErrorImage = null;
+            this.pbDayAfterTomorrow.Image = ((System.Drawing.Image)(resources.GetObject("pbDayAfterTomorrow.Image")));
             this.pbDayAfterTomorrow.Location = new System.Drawing.Point(800, 12);
             this.pbDayAfterTomorrow.Name = "pbDayAfterTomorrow";
             this.pbDayAfterTomorrow.Size = new System.Drawing.Size(144, 134);
@@ -72,6 +75,7 @@ namespace WeatherApp2
             // 
             this.pbTomorrow.BackColor = System.Drawing.Color.Transparent;
             this.pbTomorrow.ErrorImage = null;
+            this.pbTomorrow.Image = ((System.Drawing.Image)(resources.GetObject("pbTomorrow.Image")));
             this.pbTomorrow.Location = new System.Drawing.Point(650, 12);
             this.pbTomorrow.Name = "pbTomorrow";
             this.pbTomorrow.Size = new System.Drawing.Size(144, 134);
@@ -138,6 +142,7 @@ namespace WeatherApp2
             // 
             this.pbToday.BackColor = System.Drawing.Color.Transparent;
             this.pbToday.ErrorImage = null;
+            this.pbToday.Image = ((System.Drawing.Image)(resources.GetObject("pbToday.Image")));
             this.pbToday.InitialImage = null;
             this.pbToday.Location = new System.Drawing.Point(500, 12);
             this.pbToday.Name = "pbToday";
@@ -146,6 +151,17 @@ namespace WeatherApp2
             this.pbToday.TabIndex = 3;
             this.pbToday.TabStop = false;
             // 
+            // btClear
+            // 
+            this.btClear.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btClear.Location = new System.Drawing.Point(874, 229);
+            this.btClear.Name = "btClear";
+            this.btClear.Size = new System.Drawing.Size(70, 32);
+            this.btClear.TabIndex = 10;
+            this.btClear.Text = "Clear";
+            this.btClear.UseVisualStyleBackColor = true;
+            this.btClear.Click += new System.EventHandler(this.btClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -153,6 +169,7 @@ namespace WeatherApp2
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(956, 532);
+            this.Controls.Add(this.btClear);
             this.Controls.Add(this.cbAreaCode);
             this.Controls.Add(this.lbAreaCode);
             this.Controls.Add(this.label3);
@@ -186,6 +203,7 @@ namespace WeatherApp2
         private System.Windows.Forms.ListBox lbAreaCode;
         private System.Windows.Forms.ComboBox cbAreaCode;
         private System.Windows.Forms.PictureBox pbToday;
+        private System.Windows.Forms.Button btClear;
     }
 }
 

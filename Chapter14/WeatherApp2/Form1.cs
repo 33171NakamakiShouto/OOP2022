@@ -84,7 +84,7 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("静岡県");
                     lbAreaCode.Items.Add("愛知県");
                     lbAreaCode.Items.Add("三重県");
-                    pbAreaCode.ImageLocation = @"Images\東海2.png";
+                    pbAreaCode.ImageLocation = @"Images\東海.png";
                     break;
                 case "北陸地方":
                     lbAreaCode.Items.Add("新潟県");
@@ -107,7 +107,7 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("島根県");
                     lbAreaCode.Items.Add("岡山県");
                     lbAreaCode.Items.Add("広島県");
-                    pbAreaCode.ImageLocation = @"Images\中国7.png";
+                    pbAreaCode.ImageLocation = @"Images\中国.png";
                     break;
                 case "四国地方":
                     lbAreaCode.Items.Add("徳島県");
@@ -129,7 +129,7 @@ namespace WeatherApp2
                     lbAreaCode.Items.Add("宮崎県");
                     lbAreaCode.Items.Add("奄美地方");
                     lbAreaCode.Items.Add("鹿児島県（奄美地方除く）");
-                    pbAreaCode.ImageLocation = @"Images\九州南部3.png";
+                    pbAreaCode.ImageLocation = @"Images\九州南部.png";
                     break;
                 case "沖縄地方":
                     lbAreaCode.Items.Add("沖縄本島地方");
@@ -156,17 +156,17 @@ namespace WeatherApp2
             if (lbAreaCode.SelectedItem.ToString() == "青森県")
             {
                 AreaCode = "020000";
-                pbAreaCode.ImageLocation = @"Images\青森6.png"; 
+                pbAreaCode.ImageLocation = @"Images\青森.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "岩手県")
             {
                 AreaCode = "030000";
-                pbAreaCode.ImageLocation = @"Images\岩手3.png"; 
+                pbAreaCode.ImageLocation = @"Images\岩手.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "宮城県")
             {
                 AreaCode = "040000";
-                pbAreaCode.ImageLocation = @"Images\宮城2.png"; 
+                pbAreaCode.ImageLocation = @"Images\宮城.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "秋田県")
             {
@@ -233,17 +233,17 @@ namespace WeatherApp2
             if (lbAreaCode.SelectedItem.ToString() == "岐阜県")
             {
                 AreaCode = "210000";
-                pbAreaCode.ImageLocation = @"Images\岐阜2.png";
+                pbAreaCode.ImageLocation = @"Images\岐阜.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "静岡県")
             {
                 AreaCode = "220000";
-                pbAreaCode.ImageLocation = @"Images\静岡2.png";
+                pbAreaCode.ImageLocation = @"Images\静岡.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "愛知県")
             {
                 AreaCode = "230000";
-                pbAreaCode.ImageLocation = @"Images\愛知3.png";
+                pbAreaCode.ImageLocation = @"Images\愛知.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "三重県")
             {
@@ -378,17 +378,17 @@ namespace WeatherApp2
             if (lbAreaCode.SelectedItem.ToString() == "宮崎県")
             {
                 AreaCode = "450000";
-                pbAreaCode.ImageLocation = @"Images\宮崎2.png"; 
+                pbAreaCode.ImageLocation = @"Images\宮崎.png"; 
             }
             if (lbAreaCode.SelectedItem.ToString() == "奄美地方")
             {
                 AreaCode = "460040";
-                pbAreaCode.ImageLocation = @"Images\九州南部3.png";
+                pbAreaCode.ImageLocation = @"Images\九州南部.png";
             }
             if (lbAreaCode.SelectedItem.ToString() == "鹿児島県（奄美地方除く）")
             {
                 AreaCode = "460100";
-                pbAreaCode.ImageLocation = @"Images\鹿児島2.png";
+                pbAreaCode.ImageLocation = @"Images\鹿児島.png";
             }
             //沖縄地方
             if (lbAreaCode.SelectedItem.ToString() == "沖縄本島地方")
@@ -470,6 +470,16 @@ namespace WeatherApp2
             }
             catch (Exception)
             {}
+        }
+
+        private void btClear_Click(object sender, EventArgs e)
+        {
+            cbAreaCode.Text = null;
+            lbAreaCode.Items.Clear();
+            pbAreaCode.ImageLocation = @"Images\NIPPON.png";
+            pbToday.ImageLocation = @"Images\泣.png";
+            pbTomorrow.ImageLocation = @"Images\泣.png";
+            pbDayAfterTomorrow.ImageLocation = @"Images\泣.png";
         }
     }
 }
